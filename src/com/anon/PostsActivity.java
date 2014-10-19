@@ -134,7 +134,7 @@ public class PostsActivity extends Activity implements
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.posts_page_activity_menu, menu);
-		if (admin.getUsername()
+		if (!admin.getUsername()
 				.equals(ParseUser.getCurrentUser().getUsername()))
 			menu.removeItem(R.id.mbPostsAddNewUser);
 		return super.onCreateOptionsMenu(menu);
