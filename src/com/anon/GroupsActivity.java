@@ -1,6 +1,7 @@
 package com.anon;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import android.app.Activity;
@@ -28,8 +29,8 @@ public class GroupsActivity extends Activity {
         setupGUI();
     }
     
-    private ArrayList<View> loadGroups(){
-        ArrayList<View> ret = new ArrayList<View>();
+    private LinkedHashMap<View, String> loadGroups(){
+        LinkedHashMap<View, String> ret = new LinkedHashMap<View, String>();
         
         List<Group> usersGroups = null;
         try {
@@ -38,50 +39,46 @@ public class GroupsActivity extends Activity {
 			e.printStackTrace();
 		}
         
-        String[] names = new String[usersGroups.size()];
-        for(int i=0;i<names.length;i++){
-        	System.out.println(usersGroups.get(i));
-        	names[i] = usersGroups.get(i).getName();
-        }
-        
         ImageView icons[] = { new ImageView(this), new ImageView(this), new ImageView(this) };
         
-        for(int a = 0; a < names.length; a++){
+        for(int i = 0; i < usersGroups.size(); i++){
+        	Group group = usersGroups.get(i);
+        	
             RelativeLayout.LayoutParams iconParams = new RelativeLayout.LayoutParams(150, 150),
                     textParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
             RelativeLayout line = new RelativeLayout(this);
             
             TextView text = new TextView(this);
-            text.setText(names[a]);
+            text.setText(group.getName());
             text.setTypeface(Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf"));
             text.setTextSize(30);
             text.setTextColor(0xff000000);
             textParams.setMargins(20, 20, 20, 20);
             textParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
-            textParams.addRule(RelativeLayout.RIGHT_OF, a+10);
+            textParams.addRule(RelativeLayout.RIGHT_OF, i+10);
             
-            icons[a].setBackgroundColor(0xffff0000);
-            icons[a].setId(a+10);
+            icons[i].setBackgroundColor(0xffff0000);
+            icons[i].setId(i+10);
             iconParams.setMargins(10, 10, 10, 30);
             iconParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
 
             text.setLayoutParams(textParams);
-            icons[a].setLayoutParams(iconParams);
+            icons[i].setLayoutParams(iconParams);
             
-            line.addView(icons[a]);
+            line.addView(icons[i]);
             line.addView(text);
             
-            ret.add(line);
+            ret.put(line, group.getObjectId());
         }
         
         return ret;
     }
     
     private void setupGUI(){
-        ArrayList<View> groups = loadGroups();
+    	LinkedHashMap<View, String> groups = loadGroups();
         
-        for(View line : groups){
+        for(View line : groups.keySet()){
             LinearLayout layout = ((LinearLayout)findViewById(R.id.llGroups));
             
             View split = new View(this);
