@@ -2,10 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/mbGroupPageCreateNewPost"
+        android:id="@+id/mbPostsCreateNewPost"
         android:icon="@drawable/ic_action_post"
         android:showAsAction="ifRoom"
         android:title="@string/search_groups"/>
+    
+    <item
+        android:id="@+id/mbPostsAddNewUser"
+        android:icon="@drawable/ic_action_user_add"
+        android:showAsAction="ifRoom"
+        android:title="@string/new_user"/>
 
     <!--
     Overflow 

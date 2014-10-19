@@ -19,13 +19,15 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.anon.AddNewUserToGroup.EditNameDialogListenerAddUsers;
 import com.anon.CreateNewPost.EditNameDialogListenerNewPosts;
 import com.anon.backend.Group;
 import com.anon.backend.Post;
 import com.parse.ParseException;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-public class PostsActivity extends Activity implements EditNameDialogListenerNewPosts {
+public class PostsActivity extends Activity implements EditNameDialogListenerNewPosts, EditNameDialogListenerAddUsers {
 
 	@Override
 	public void onCreate(Bundle b) {
@@ -126,10 +128,15 @@ public class PostsActivity extends Activity implements EditNameDialogListenerNew
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.mbGroupPageCreateNewPost:
-			FragmentManager fm = getFragmentManager();
+		case R.id.mbPostsCreateNewPost:
+			FragmentManager fm1 = getFragmentManager();
 			CreateNewPost CreateNewPostDialog = new CreateNewPost();
-			CreateNewPostDialog.show(fm, "CreateNewPostDialog");
+			CreateNewPostDialog.show(fm1, "CreateNewPostDialog");
+			return true;
+		case R.id.mbPostsAddNewUser:
+			FragmentManager fm2 = getFragmentManager();
+			AddNewUserToGroup addNewUserDialog = new AddNewUserToGroup();
+			addNewUserDialog.show(fm2, "addNewUserDialog");
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -148,5 +155,26 @@ public class PostsActivity extends Activity implements EditNameDialogListenerNew
 		new Post(postText, group, ParseUser.getCurrentUser());
 		finish();
         startActivity(getIntent());
+	}
+
+	@Override
+	public void onFinishEditDialogAddUsers(String inputText) {
+		Group group = null;
+		try {
+			group = Group.getGroupFromID(getIntent().getExtras().getString("parentGroupID"));
+		} catch(ParseException e) {
+			e.printStackTrace();
+		}
+		String addUserEmail = inputText;
+		System.out.println(inputText);
+		ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
+		userQuery.whereEqualTo("email", addUserEmail);
+		ParseUser user = null;
+		try {
+			user = userQuery.find().get(0);
+		} catch(ParseException e) {
+			e.printStackTrace();
+		}
+		group.addMember(user);
 	}
 }
