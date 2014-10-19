@@ -8,7 +8,6 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,21 +26,21 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 
 public class GroupsActivity extends Activity implements EditNameDialogListener {
-
+	
 	@Override
 	public void onCreate(Bundle b) {
 		super.onCreate(b);
 		setContentView(R.layout.groups);
 		setupGUI();
 	}
-
+	
 	private LinkedHashMap<View, String> loadGroups() {
 		LinkedHashMap<View, String> ret = new LinkedHashMap<View, String>();
-
+		
 		List<Group> usersGroups = null;
 		try {
 			usersGroups = Group.getGroupsOfUser(ParseUser.getCurrentUser());
-		} catch (ParseException e) {
+		} catch(ParseException e) {
 			e.printStackTrace();
 		}
 
@@ -79,58 +78,56 @@ public class GroupsActivity extends Activity implements EditNameDialogListener {
 
 		return ret;
 	}
-
+	
 	private void setupGUI() {
 		final LinkedHashMap<View, String> groups = loadGroups();
-
-		for (final View line : groups.keySet()) {
+		
+		for(final View line : groups.keySet()) {
 			LinearLayout layout = ((LinearLayout) findViewById(R.id.llGroups));
-
+			
 			View split = new View(this);
-			LinearLayout.LayoutParams splitParams = new LinearLayout.LayoutParams(
-					LayoutParams.MATCH_PARENT, 2);
+			LinearLayout.LayoutParams splitParams = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 2);
 			split.setPadding(10, 10, 10, 10);
 			split.setLayoutParams(splitParams);
 			split.setBackgroundColor(getResources().getColor(R.color.light_purple));
-
-            line.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-			line.setBackground(getResources().getDrawable(
-					R.drawable.group_background));
+			
+			line.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+			line.setBackground(getResources().getDrawable(R.drawable.group_background));
 			line.setClickable(true);
 			line.setOnClickListener(new OnClickListener() {
+				
 				public void onClick(View v) {
-					Intent intent = new Intent(GroupsActivity.this,
-							PostsActivity.class);
+					Intent intent = new Intent(GroupsActivity.this, PostsActivity.class);
 					Bundle groupInfo = new Bundle();
 					groupInfo.putString("parentGroupID", groups.get(line));
 					intent.putExtras(groupInfo);
 					startActivity(intent);
 				}
 			});
-
+			
 			layout.addView(line);
 			layout.addView(split);
 		}
 	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.groups_activity_menu, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
-
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
-		switch (item.getItemId()) {
+		switch(item.getItemId()) {
 		case R.id.mbGroupsSearchGroups:
 			Toast.makeText(GroupsActivity.this, "Not implemented yet", Toast.LENGTH_SHORT).show();
 			return true;
 		case R.id.mbGroupsCreateNewGroup:
 			FragmentManager fm = getFragmentManager();
-	        CreateNewGroup createNewGroupDialog = new CreateNewGroup();
-	        createNewGroupDialog.show(fm, "createNewGroupDialog");
+			CreateNewGroup createNewGroupDialog = new CreateNewGroup();
+			createNewGroupDialog.show(fm, "createNewGroupDialog");
 			return true;
 		case R.id.mbGroupsSettings:
 			Toast.makeText(GroupsActivity.this, "Not implemented yet", Toast.LENGTH_SHORT).show();
@@ -138,8 +135,7 @@ public class GroupsActivity extends Activity implements EditNameDialogListener {
 		case R.id.mbGroupsSignOut:
 			ParseUser.logOut();
 			Intent i = new Intent(GroupsActivity.this, LogInScreen.class);
-			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK
-					| Intent.FLAG_ACTIVITY_NEW_TASK);
+			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(i);
 			return true;
 		default:
@@ -150,7 +146,8 @@ public class GroupsActivity extends Activity implements EditNameDialogListener {
 	@Override
     public void onFinishEditDialog(String inputText) {
         String groupName = inputText;
-        Log.wtf("yo", inputText);
+        new Group(groupName, null, ParseUser.getCurrentUser());
+        finish();
+        startActivity(getIntent());
     }
-
 }
