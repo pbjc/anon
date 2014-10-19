@@ -22,6 +22,8 @@ public class LogInScreen extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE); // removes title bar
 		setContentView(R.layout.log_in_screen);
+
+		overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 		
 		initializeVars();
 		setTextFonts();
@@ -38,7 +40,6 @@ public class LogInScreen extends Activity {
 			@Override
 			public void onClick(View v) {
 			    Intent intent = new Intent(LogInScreen.this, CreateNewUser.class);
-	            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 				startActivity(intent);
 			}
 		});

@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class GroupsActivity extends Activity{
+public class GroupsActivity extends Activity {
 
     @Override
     public void onCreate(Bundle b){
@@ -38,7 +38,7 @@ public class GroupsActivity extends Activity{
             text.setText(names[a]);
             text.setTypeface(Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf"));
             text.setTextSize(20);
-            text.setTextColor(0xffffffff);
+            text.setTextColor(0xff000000);
             
             
             icons[a].setBackgroundColor(0xffff0000);
