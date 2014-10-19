@@ -21,8 +21,8 @@ public class GroupsActivity extends Activity{
         setupGUI();
     }
     
-    private ArrayList<RelativeLayout> loadGroups(){
-        ArrayList<RelativeLayout> ret = new ArrayList<RelativeLayout>();
+    private ArrayList<View> loadGroups(){
+        ArrayList<View> ret = new ArrayList<View>();
         
         ImageView icons[] = { new ImageView(this), new ImageView(this), new ImageView(this) };
         String names[] = {"askfhaskdjfhaskjdf", "penis", "jacob is a baller"};
@@ -34,17 +34,20 @@ public class GroupsActivity extends Activity{
             text.setText(names[a]);
             text.setTypeface(Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf"));
             text.setTextSize(20);
+            
+            RelativeLayout.LayoutParams iconParam = new RelativeLayout.LayoutParams(50, 50);
+            icons[a].setBackgroundColor(0xffff0000);
+            icons[a].setLayoutParams()
         }
         
         return ret;
     }
     
     private void setupGUI(){
-        ArrayList<RelativeLayout> groups = loadGroups();
+        ArrayList<View> groups = loadGroups();
         
-        for(RelativeLayout rl : groups){
+        for(View line : groups){
             LinearLayout layout = ((LinearLayout)findViewById(R.id.llGroups));
-            
             
             View split = new View(this);
             LinearLayout.LayoutParams splitParams = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 2);
@@ -52,7 +55,9 @@ public class GroupsActivity extends Activity{
             split.setLayoutParams(splitParams);
             split.setBackgroundColor(getResources().getColor(R.color.light_purple));
 
-            layout.addView(rl);
+            line.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+            
+            layout.addView(line);
             layout.addView(split);
         }
     }
