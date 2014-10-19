@@ -27,7 +27,7 @@ public class AddNewUserToGroup extends DialogFragment implements OnEditorActionL
         View view = inflater.inflate(R.layout.add_new_user_to_group, container);
         etNewUserEmail = (EditText) view.findViewById(R.id.etAddNewUserByEmail);
         getDialog().setTitle("Add New User To Group");
- 
+        
         // Show soft keyboard automatically
         etNewUserEmail.requestFocus();
         etNewUserEmail.setOnEditorActionListener(this);

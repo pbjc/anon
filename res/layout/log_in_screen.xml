@@ -6,7 +6,7 @@
         android:id="@+id/tvLogInScreenTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="45dp"
         android:gravity="center"
         android:text="@string/app_name"
         android:textColor="@color/white"
