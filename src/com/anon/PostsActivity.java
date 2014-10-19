@@ -23,6 +23,7 @@ import com.anon.CreateNewPost.EditNameDialogListenerNewPosts;
 import com.anon.backend.Group;
 import com.anon.backend.Post;
 import com.parse.ParseException;
+import com.parse.ParseUser;
 
 public class PostsActivity extends Activity implements EditNameDialogListenerNewPosts {
 
