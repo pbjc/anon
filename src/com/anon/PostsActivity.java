@@ -18,11 +18,8 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.anon.CreateNewGroup.EditNameDialogListener;
 import com.anon.CreateNewPost.EditNameDialogListenerNewPosts;
-import com.anon.backend.Comment;
 import com.anon.backend.Group;
 import com.anon.backend.Post;
 import com.parse.ParseException;
@@ -141,7 +138,13 @@ public class PostsActivity extends Activity implements EditNameDialogListenerNew
 
 	@Override
 	public void onFinishEditDialogNewPosts(String inputText) {
-		// TODO Auto-generated method stub
 		String postText = inputText;
+		Group group = null;
+		try {
+			group = Group.getGroupFromID(getIntent().getExtras().getString("parentGroupID"));
+		} catch(ParseException e) {
+			e.printStackTrace();
+		}
+		new Post(postText, group, ParseUser.getCurrentUser());
 	}
 }
