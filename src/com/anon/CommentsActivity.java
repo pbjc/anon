@@ -30,7 +30,7 @@ public class CommentsActivity extends Activity implements EditNameDialogListener
     public void onCreate(Bundle b){
         super.onCreate(b);
         setContentView(R.layout.comments);
-        setupGUI(getIntent().getExtras().getString("parentGroupID"));
+        setupGUI(getIntent().getExtras().getString("parentPostID"));
     }
     
 
@@ -112,8 +112,16 @@ public class CommentsActivity extends Activity implements EditNameDialogListener
 
 	@Override
 	public void onFinishEditDialogNewComments(String inputText) {
-		// TODO Auto-generated method stub
 		String commentText = inputText;
+		Post post = null;
+		try {
+			post = Post.getPostFromID(getIntent().getExtras().getString("parentPostID"));
+		} catch(ParseException e) {
+			e.printStackTrace();
+		}
+		new Comment(commentText, post, ParseUser.getCurrentUser());
+		finish();
+        startActivity(getIntent());
 	}
     
 }

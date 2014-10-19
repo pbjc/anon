@@ -105,7 +105,7 @@ public class PostsActivity extends Activity implements EditNameDialogListenerNew
                     Intent intent = new Intent(PostsActivity.this,
                             CommentsActivity.class);
                     Bundle groupInfo = new Bundle();
-                    groupInfo.putString("parentGroupID", posts.get(line));
+                    groupInfo.putString("parentPostID", posts.get(line));
                     intent.putExtras(groupInfo);
                     startActivity(intent);
                 }
