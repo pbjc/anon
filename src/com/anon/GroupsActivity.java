@@ -44,12 +44,13 @@ public class GroupsActivity extends Activity {
         	names[i] = usersGroups.get(i).getName();
         }
         
+        names = new String[]{ "crap crap crap crap crap crap crap crap crap crap crap crap crap crap crap ", "crap", "crap" };
         ImageView icons[] = { new ImageView(this), new ImageView(this), new ImageView(this) };
         
         for(int a = 0; a < names.length; a++){
             RelativeLayout.LayoutParams iconParams = new RelativeLayout.LayoutParams(150, 150),
                     textParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-
+            
             RelativeLayout line = new RelativeLayout(this);
             
             TextView text = new TextView(this);
@@ -90,7 +91,7 @@ public class GroupsActivity extends Activity {
             split.setLayoutParams(splitParams);
             split.setBackgroundColor(getResources().getColor(R.color.light_purple));
 
-            line.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 200));
+            line.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
             line.setBackground(getResources().getDrawable(R.drawable.group_background));
             line.setClickable(true);
             line.setOnClickListener(new OnClickListener() {

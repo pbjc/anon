@@ -19,7 +19,7 @@ public class Anon extends Application {
         ParseObject.registerSubclass(Group.class);
         ParseObject.registerSubclass(Post.class);
         ParseObject.registerSubclass(Comment.class);
-        
+
         // Add your initialization code here
         Parse.initialize(this, "03BKZLIMEoWsiabvkIpaDWHYCRApQwobb4tOKeBo",
                 "A49RaubTM6QJETtEJllPvnCqE4mcWJhTXh4GvplJ");
