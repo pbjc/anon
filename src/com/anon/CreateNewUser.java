@@ -21,6 +21,8 @@ public class CreateNewUser extends Activity{
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);		//removes title bar
 		setContentView(R.layout.create_new_user);
+
+		overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 		
 		initializeVars();
 		setTextFonts();
