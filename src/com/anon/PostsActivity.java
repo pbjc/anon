@@ -119,7 +119,7 @@ public class PostsActivity extends Activity implements EditNameDialogListenerNew
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.specific_group_page_activity_menu, menu);
+		inflater.inflate(R.menu.posts_page_activity_menu, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -146,5 +146,7 @@ public class PostsActivity extends Activity implements EditNameDialogListenerNew
 			e.printStackTrace();
 		}
 		new Post(postText, group, ParseUser.getCurrentUser());
+		finish();
+        startActivity(getIntent());
 	}
 }
