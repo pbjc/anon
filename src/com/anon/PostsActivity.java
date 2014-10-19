@@ -36,11 +36,10 @@ public class PostsActivity extends Activity {
             text.setText(posts[a]);
             text.setTypeface(Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf"));
             text.setTextSize(30);
-            text.setTextColor(getResources().getColor(R.color.light_blue));
-            textParams.setMargins(20, 20, 20, 20);
-            textParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
-            textParams.addRule(RelativeLayout.RIGHT_OF, a+10);
+            text.setTextColor(0xffffffff);
+            text.setPadding(40, 20, 40, 20);
             
+            textParams.setMargins(40, 40, 40, 40);
             text.setLayoutParams(textParams);
             
             ret.add(text);
@@ -50,30 +49,23 @@ public class PostsActivity extends Activity {
     }
     
     private void setupGUI(){
-        ArrayList<View> groups = loadPosts();
+        ArrayList<View> posts = loadPosts();
         
-        for(View line : groups){
-            LinearLayout layout = ((LinearLayout)findViewById(R.id.llGroups));
-            
-            View split = new View(this);
-            LinearLayout.LayoutParams splitParams = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 2);
-            split.setPadding(10, 10, 10, 10);
-            split.setLayoutParams(splitParams);
-            split.setBackgroundColor(getResources().getColor(R.color.light_purple));
+        for(View line : posts){
+            LinearLayout layout = ((LinearLayout)findViewById(R.id.llPosts));
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+            params.setMargins(0, 40, 0, 40);
 
-            line.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 200));
-            line.setBackground(getResources().getDrawable(R.drawable.group_background));
+            line.setLayoutParams(params);
             line.setClickable(true);
             line.setOnClickListener(new OnClickListener() {
                 public void onClick(View v) {
                     Log.wtf("Arjun", "Sucks");
                 }
             });
+            line.setBackgroundColor(getResources().getColor(R.color.dark_blue));
             
             layout.addView(line);
-            layout.addView(split);
-            
-            
         }
     }
     

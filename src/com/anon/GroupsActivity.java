@@ -1,6 +1,7 @@
 package com.anon;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -18,6 +19,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.anon.backend.Group;
+import com.parse.ParseException;
+import com.parse.ParseUser;
+
 public class GroupsActivity extends Activity {
 
     @Override
@@ -30,8 +35,20 @@ public class GroupsActivity extends Activity {
     private ArrayList<View> loadGroups(){
         ArrayList<View> ret = new ArrayList<View>();
         
+        List<Group> usersGroups = null;
+        try {
+			usersGroups = Group.getGroupsOfUser(ParseUser.getCurrentUser());
+		} catch(ParseException e) {
+			e.printStackTrace();
+		}
+        
+        String[] names = new String[usersGroups.size()];
+        for(int i=0;i<names.length;i++){
+        	System.out.println(usersGroups.get(i));
+        	names[i] = usersGroups.get(i).getName();
+        }
+        
         ImageView icons[] = { new ImageView(this), new ImageView(this), new ImageView(this) };
-        String names[] = {"Group 1 Group 1 Group 1 Group 1 Group 1 Group 1", "Group 2", "Group 3"};
         
         for(int a = 0; a < names.length; a++){
             RelativeLayout.LayoutParams iconParams = new RelativeLayout.LayoutParams(150, 150),
@@ -82,14 +99,15 @@ public class GroupsActivity extends Activity {
             line.setClickable(true);
             line.setOnClickListener(new OnClickListener() {
                 public void onClick(View v) {
-                    Log.wtf("Arjun", "Sucks");
+                    Intent intent = new Intent(GroupsActivity.this, PostsActivity.class);
+                    Bundle groupInfo = new Bundle();
+                    intent.putExtras(groupInfo);
+                    startActivity(intent);
                 }
             });
             
             layout.addView(line);
             layout.addView(split);
-            
-            
         }
     }
 
