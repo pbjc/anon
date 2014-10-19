@@ -11,7 +11,7 @@ public class Comment extends ParseObject {
 	
 	public static Comment getCommentFromID(String ID) throws ParseException {
 		ParseQuery<Comment> commentQuery = ParseQuery.getQuery("Comment");
-		commentQuery.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
+//		commentQuery.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
 		Comment comment = commentQuery.get(ID);
 		comment.pin();
 		return comment;

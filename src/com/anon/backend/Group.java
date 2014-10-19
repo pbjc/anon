@@ -15,7 +15,7 @@ public class Group extends ParseObject {
 	
 	public static Group getGroupFromID(String ID) throws ParseException {
 		ParseQuery<Group> groupQuery = ParseQuery.getQuery("Group");
-		groupQuery.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
+//		groupQuery.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
 		Group group = groupQuery.get(ID);
 		group.pin();
 		return group;
