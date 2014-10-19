@@ -28,16 +28,29 @@ public class GroupsActivity extends Activity{
         String names[] = {"askfhaskdjfhaskjdf", "penis", "jacob is a baller"};
         
         for(int a = 0; a < names.length; a++){
+            RelativeLayout.LayoutParams iconParams = new RelativeLayout.LayoutParams(50, 50),
+                    textParams = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+
             RelativeLayout line = new RelativeLayout(this);
             
             TextView text = new TextView(this);
             text.setText(names[a]);
             text.setTypeface(Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf"));
             text.setTextSize(20);
+            text.setTextColor(0xffffffff);
             
-            RelativeLayout.LayoutParams iconParam = new RelativeLayout.LayoutParams(50, 50);
+            textParams.addRule(RelativeLayout.RIGHT_OF, a); // this is terrible
+            text.setLayoutParams(textParams);
+            
             icons[a].setBackgroundColor(0xffff0000);
-            icons[a].setLayoutParams()
+            icons[a].setId(a);
+            iconParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
+            icons[a].setLayoutParams(iconParams);
+            
+            line.addView(icons[a]);
+            line.addView(text);
+            
+            ret.add(line);
         }
         
         return ret;
