@@ -13,7 +13,7 @@ public class Comment extends ParseObject {
 		ParseQuery<Comment> commentQuery = ParseQuery.getQuery("Comment");
 //		commentQuery.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
 		Comment comment = commentQuery.get(ID);
-		comment.pin();
+//		comment.pin();
 		return comment;
 	}
 	

@@ -22,7 +22,7 @@ public class Post extends ParseObject {
 		ParseQuery<Post> postQuery = ParseQuery.getQuery("Post");
 //		postQuery.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
 		Post post = postQuery.get(ID);
-		post.pin();
+//		post.pin();
 		return post;
 	}
 	

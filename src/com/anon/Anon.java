@@ -16,7 +16,7 @@ public class Anon extends Application {
     public void onCreate() {
         super.onCreate();
 
-        Parse.enableLocalDatastore(getApplicationContext());
+//        Parse.enableLocalDatastore(getApplicationContext());
         
         ParseObject.registerSubclass(Group.class);
         ParseObject.registerSubclass(Post.class);
