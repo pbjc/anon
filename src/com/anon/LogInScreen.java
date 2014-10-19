@@ -23,7 +23,7 @@ public class LogInScreen extends Activity {
 
 	TextView screenTitle;
 	EditText userEmailAddressInfo, userPasswordInfo;
-	Button createNewUser, logInUser;
+	TextView createNewUser, logInUser;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -145,8 +145,8 @@ public class LogInScreen extends Activity {
 		screenTitle = (TextView) findViewById(R.id.tvLogInScreenTitle);
 		userEmailAddressInfo = (EditText) findViewById(R.id.etLoginEmailAddress);
 		userPasswordInfo = (EditText) findViewById(R.id.etLoginPassword);
-		createNewUser = (Button) findViewById(R.id.bCreateNewUserFromMain);
-		logInUser = (Button) findViewById(R.id.bLogInUser);
+		createNewUser = (TextView) findViewById(R.id.tvCreateNewUserFromMain);
+		logInUser = (TextView) findViewById(R.id.tvLogInUser);
 	}
 
 	private void setTextFonts() {

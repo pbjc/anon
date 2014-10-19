@@ -46,32 +46,51 @@
         </EditText>
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="75dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal" >
+        android:layout_centerHorizontal="true" >
 
-        <Button
-            android:id="@+id/bCreateNewUserFromMain"
-            android:layout_width="125dp"
+        <View
+            android:id="@+id/top"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/white" />
+
+        <View
+            android:id="@+id/split"
+            android:layout_width="2dp"
             android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:background="@color/white" />
+
+        <TextView
+            android:id="@+id/tvCreateNewUserFromMain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/top"
+            android:layout_centerHorizontal="true"
+            android:layout_toLeftOf="@+id/split"
+            android:background="@drawable/group_background"
+            android:gravity="center"
             android:text="@string/create_acct"
             android:textColor="@color/white"
-            android:color="@color/light_purple" >
-        </Button>
+            android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/bLogInUser"
-            android:layout_width="125dp"
+        <TextView
+            android:id="@+id/tvLogInUser"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
+            android:layout_below="@+id/top"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/split"
+            android:background="@drawable/group_background"
+            android:gravity="center"
             android:text="@string/log_me_in"
             android:textColor="@color/white"
-            android:color="@color/light_purple" >
-        </Button>
-    </LinearLayout>
+            android:textSize="20sp" />
+    </RelativeLayout>
 
 </RelativeLayout>
