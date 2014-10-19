@@ -4,10 +4,10 @@
     <string name="email">Email Address</string>
     <string name="password">Password</string>
     <string name="password_again">Confirm Password</string>
-    <string name="log_me_in">Log In!</string>
+    <string name="log_me_in">Log In</string>
     <string name="create_acct">Create an Account</string>
     <string name="name">First and Last Name</string>
-    <string name="ok">OK!</string>
+    <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="create_new_group">Create New Group</string>
     <string name="search_groups">Search Your Groups</string>
