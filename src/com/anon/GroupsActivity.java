@@ -1,6 +1,5 @@
 package com.anon;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -8,7 +7,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,36 +24,29 @@ import com.parse.ParseUser;
 
 public class GroupsActivity extends Activity {
 
-    @Override
-    public void onCreate(Bundle b){
-        super.onCreate(b);
-        setContentView(R.layout.groups);
-        setupGUI();
-    }
-    
-    private LinkedHashMap<View, String> loadGroups(){
-        LinkedHashMap<View, String> ret = new LinkedHashMap<View, String>();
-        
-        List<Group> usersGroups = null;
-        try {
+	@Override
+	public void onCreate(Bundle b) {
+		super.onCreate(b);
+		setContentView(R.layout.groups);
+		setupGUI();
+	}
+
+	private LinkedHashMap<View, String> loadGroups() {
+		LinkedHashMap<View, String> ret = new LinkedHashMap<View, String>();
+
+		List<Group> usersGroups = null;
+		try {
 			usersGroups = Group.getGroupsOfUser(ParseUser.getCurrentUser());
-		} catch(ParseException e) {
+		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-        
-        String[] names = new String[usersGroups.size()];
-        for(int i=0;i<names.length;i++){
-        	System.out.println(usersGroups.get(i));
-        	names[i] = usersGroups.get(i).getName();
-        }
-        
-        names = new String[]{ "crap crap crap crap crap crap crap crap crap crap crap crap crap crap crap ", "crap", "crap" };
 
-        ImageView icons[] = { new ImageView(this), new ImageView(this), new ImageView(this) };
-        
-        for(int i = 0; i < usersGroups.size(); i++){
-        	Group group = usersGroups.get(i);
-        	
+		ImageView icons[] = { new ImageView(this), new ImageView(this),
+				new ImageView(this) };
+
+		for (int i = 0; i < usersGroups.size(); i++) {
+            Group group = usersGroups.get(i);
+            
             RelativeLayout.LayoutParams iconParams = new RelativeLayout.LayoutParams(150, 150),
                     textParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
             
@@ -83,67 +74,75 @@ public class GroupsActivity extends Activity {
             
             ret.put(line, group.getObjectId());
         }
-        
-        return ret;
-    }
-    
-    private void setupGUI(){
-    	final LinkedHashMap<View, String> groups = loadGroups();
-        
-        for(final View line : groups.keySet()){
-            LinearLayout layout = ((LinearLayout)findViewById(R.id.llGroups));
-            
-            View split = new View(this);
-            LinearLayout.LayoutParams splitParams = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 2);
-            split.setPadding(10, 10, 10, 10);
-            split.setLayoutParams(splitParams);
-            split.setBackgroundColor(getResources().getColor(R.color.light_purple));
+
+		return ret;
+	}
+
+	private void setupGUI() {
+		final LinkedHashMap<View, String> groups = loadGroups();
+
+		for (final View line : groups.keySet()) {
+			LinearLayout layout = ((LinearLayout) findViewById(R.id.llGroups));
+
+			View split = new View(this);
+			LinearLayout.LayoutParams splitParams = new LinearLayout.LayoutParams(
+					LayoutParams.MATCH_PARENT, 2);
+			split.setPadding(10, 10, 10, 10);
+			split.setLayoutParams(splitParams);
+			split.setBackgroundColor(getResources().getColor(R.color.light_purple));
 
             line.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-            line.setBackground(getResources().getDrawable(R.drawable.group_background));
-            line.setClickable(true);
-            line.setOnClickListener(new OnClickListener() {
-                public void onClick(View v) {
-                    Intent intent = new Intent(GroupsActivity.this, PostsActivity.class);
-                    Bundle groupInfo = new Bundle();
-                    groupInfo.putString("parentGroupID", groups.get(line));
-                    intent.putExtras(groupInfo);
-                    startActivity(intent);
-                }
-            });
-            
-            layout.addView(line);
-            layout.addView(split);
-        }
-    }
+			line.setBackground(getResources().getDrawable(
+					R.drawable.group_background));
+			line.setClickable(true);
+			line.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					Intent intent = new Intent(GroupsActivity.this,
+							PostsActivity.class);
+					Bundle groupInfo = new Bundle();
+					groupInfo.putString("parentGroupID", groups.get(line));
+					intent.putExtras(groupInfo);
+					startActivity(intent);
+				}
+			});
+
+			layout.addView(line);
+			layout.addView(split);
+		}
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.groups_activity_menu, menu);
-	    return super.onCreateOptionsMenu(menu);
+		inflater.inflate(R.menu.groups_activity_menu, menu);
+		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
 		switch (item.getItemId()) {
-        case R.id.mbGroupsSearchGroups:
-            //dostuff
-            return true;
-        case R.id.mbGroupsCreateNewGroup:
-            Intent i = new Intent(GroupsActivity.this, CreateNewGroupActivity.class);
-            startActivity(i);
-            return true;
-        case R.id.mbGroupsSettings:
-            //dostuff
-            return true;
-        case R.id.mbGroupsSignOut:
-            //dostuff
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
-    }
+		case R.id.mbGroupsSearchGroups:
+			// dostuff
+			return true;
+		case R.id.mbGroupsCreateNewGroup:
+			Intent i = new Intent(GroupsActivity.this,
+					CreateNewGroupActivity.class);
+			startActivity(i);
+			return true;
+		case R.id.mbGroupsSettings:
+			// dostuff
+			return true;
+		case R.id.mbGroupsSignOut:
+			ParseUser.logOut();
+			i = new Intent(GroupsActivity.this, LogInScreen.class);
+			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK
+					| Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(i);
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
-    
+
 }
