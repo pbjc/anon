@@ -1,10 +1,7 @@
 package com.anon;
 
-import com.anon.CreateNewGroup.EditNameDialogListener;
-
 import android.app.DialogFragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;

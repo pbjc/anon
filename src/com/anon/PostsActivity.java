@@ -18,15 +18,11 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.anon.CreateNewGroup.EditNameDialogListener;
 import com.anon.CreateNewPost.EditNameDialogListenerNewPosts;
-import com.anon.backend.Comment;
 import com.anon.backend.Group;
 import com.anon.backend.Post;
 import com.parse.ParseException;
-import com.parse.ParseUser;
 
 public class PostsActivity extends Activity implements EditNameDialogListenerNewPosts {
 
