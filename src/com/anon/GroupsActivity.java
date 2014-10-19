@@ -3,9 +3,9 @@ package com.anon;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -78,7 +78,9 @@ public class GroupsActivity extends Activity {
             line.setClickable(true);
             line.setOnClickListener(new OnClickListener() {
                 public void onClick(View v) {
-                    Log.wtf("Arjun", "Sucks");
+                    Intent intent = new Intent(GroupsActivity.this, PostsActivity.class);
+                    Bundle groupInfo = new Bundle();
+                    startActivity(intent, groupInfo);
                 }
             });
             

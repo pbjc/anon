@@ -36,10 +36,7 @@ public class PostsActivity extends Activity {
             text.setText(posts[a]);
             text.setTypeface(Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf"));
             text.setTextSize(30);
-            text.setTextColor(getResources().getColor(R.color.light_blue));
-            textParams.setMargins(20, 20, 20, 20);
-            textParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
-            textParams.addRule(RelativeLayout.RIGHT_OF, a+10);
+            text.setTextColor(getResources().getColor(R.color.dark_blue));
             
             text.setLayoutParams(textParams);
             
@@ -50,10 +47,10 @@ public class PostsActivity extends Activity {
     }
     
     private void setupGUI(){
-        ArrayList<View> groups = loadPosts();
+        ArrayList<View> posts = loadPosts();
         
-        for(View line : groups){
-            LinearLayout layout = ((LinearLayout)findViewById(R.id.llGroups));
+        for(View line : posts){
+            LinearLayout layout = ((LinearLayout)findViewById(R.id.llPosts));
             
             View split = new View(this);
             LinearLayout.LayoutParams splitParams = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 2);
@@ -61,7 +58,7 @@ public class PostsActivity extends Activity {
             split.setLayoutParams(splitParams);
             split.setBackgroundColor(getResources().getColor(R.color.light_purple));
 
-            line.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 200));
+            line.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
             line.setBackground(getResources().getDrawable(R.drawable.group_background));
             line.setClickable(true);
             line.setOnClickListener(new OnClickListener() {
@@ -72,8 +69,6 @@ public class PostsActivity extends Activity {
             
             layout.addView(line);
             layout.addView(split);
-            
-            
         }
     }
     
