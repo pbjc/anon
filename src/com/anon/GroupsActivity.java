@@ -97,14 +97,13 @@ public class GroupsActivity extends Activity {
                 public void onClick(View v) {
                     Intent intent = new Intent(GroupsActivity.this, PostsActivity.class);
                     Bundle groupInfo = new Bundle();
-                    startActivity(intent, groupInfo);
+                    intent.putExtras(groupInfo);
+                    startActivity(intent);
                 }
             });
             
             layout.addView(line);
             layout.addView(split);
-            
-            
         }
     }
     
