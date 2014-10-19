@@ -63,7 +63,7 @@ public class GroupsActivity extends Activity implements EditNameDialogListener {
             textParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
             textParams.addRule(RelativeLayout.RIGHT_OF, i+10);
             
-            icon.setBackgroundColor(0xffff0000);
+            icon.setBackgroundColor(getResources().getColor(R.color.light_purple));
             icon.setId(i+10);
             iconParams.setMargins(10, 10, 10, 30);
             iconParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
