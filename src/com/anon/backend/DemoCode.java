@@ -23,5 +23,31 @@ public class DemoCode {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	private void populate() {
+		for(int k = 0; k < 20; k++) {
+			ParseUser currentUser = ParseUser.getCurrentUser();
+			Group group = new Group("Jacob " + k, null, ParseUser.getCurrentUser());
+			try {
+				Thread.sleep(500);
+			} catch(InterruptedException e) {
+				e.printStackTrace();
+			}
+			for(int i = 0; i < 7; i++) {
+				group.addPost("Jacob sux " + i, currentUser);
+				try {
+					for(int j = 0; j < 7; j++) {
+						Thread.sleep(500);
+						group.getAllPosts().get(i).addComment("Yeah I know " + j, currentUser);
+					}
+				} catch(ParseException e) {
+					e.printStackTrace();
+				} catch(InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 
 }

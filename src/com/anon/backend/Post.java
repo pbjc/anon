@@ -19,8 +19,11 @@ import com.parse.ParseUser;
 public class Post extends ParseObject {
 	
 	public static Post getPostFromID(String ID) throws ParseException {
-		ParseQuery<Post> post = ParseQuery.getQuery("Post");
-		return post.get(ID);
+		ParseQuery<Post> postQuery = ParseQuery.getQuery("Post");
+//		postQuery.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
+		Post post = postQuery.get(ID);
+//		post.pin();
+		return post;
 	}
 	
 	public Post() {} 
