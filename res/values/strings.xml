@@ -19,7 +19,7 @@
     <string name="new_user">New User</string>
     <string name="enter_user_email">Enter User\'s Email Address</string>
 
-    <string name="alert_name_clarification"><u>Why do you need this?</u></string>
+    <string name="alert_name_clarification"><u>Why do we need this?</u></string>
     <string name="alert_name_title">Why do we need your name?</string>
     <string name="alert_name_text">While all of your posts and comments
         are completely anonymous, other members in your group have the ability
