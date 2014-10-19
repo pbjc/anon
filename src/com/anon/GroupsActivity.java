@@ -25,24 +25,29 @@ public class GroupsActivity extends Activity{
         ArrayList<View> ret = new ArrayList<View>();
         
         ImageView icons[] = { new ImageView(this), new ImageView(this), new ImageView(this) };
-        String names[] = {"askfhaskdjfhaskjdf", "penis", "jacob is a baller"};
+        String names[] = {"Group 1", "Group 2", "Group 3"};
         
         for(int a = 0; a < names.length; a++){
-            LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams(50, 50),
-                    textParams = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+            RelativeLayout.LayoutParams iconParams = new RelativeLayout.LayoutParams(150, 150),
+                    textParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
-            LinearLayout line = new LinearLayout(this);
-            line.setOrientation(LinearLayout.HORIZONTAL);
+            RelativeLayout line = new RelativeLayout(this);
             
             TextView text = new TextView(this);
             text.setText(names[a]);
             text.setTypeface(Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf"));
-            text.setTextSize(20);
+            text.setTextSize(30);
             text.setTextColor(0xff000000);
-            
+            textParams.setMargins(20, 20, 20, 20);
+            textParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
+            textParams.addRule(RelativeLayout.RIGHT_OF, a+10);
             
             icons[a].setBackgroundColor(0xffff0000);
-            icons[a].setId(a);
+            icons[a].setId(a+10);
+            iconParams.setMargins(10, 10, 10, 30);
+            iconParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
+
+            text.setLayoutParams(textParams);
             icons[a].setLayoutParams(iconParams);
             
             line.addView(icons[a]);
@@ -66,10 +71,12 @@ public class GroupsActivity extends Activity{
             split.setLayoutParams(splitParams);
             split.setBackgroundColor(getResources().getColor(R.color.light_purple));
 
-            line.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 100));
+            line.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 200));
             
             layout.addView(line);
             layout.addView(split);
+            
+            
         }
     }
     
