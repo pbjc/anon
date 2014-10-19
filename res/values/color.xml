@@ -3,7 +3,8 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="clear">#00000000</color>
-    <color name="light_purple">#9933CC</color>
+    <color name="dark_purple">#9933CC</color>
+    <color name="light_purple">#AA66CC</color>
     <color name="light_blue">#33b5e5</color>
     <color name="light_grey">#eeeeee</color>
     <color name="dark_blue">#0099cc</color>

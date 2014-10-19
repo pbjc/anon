@@ -41,18 +41,13 @@ public class CommentsActivity extends Activity {
         }
         
         for(Comment comment : comments){
-            RelativeLayout.LayoutParams  textParams =
-                    new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-            
             TextView text = new TextView(this);
+            
             text.setText(comment.getMessage());
             text.setTypeface(Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf"));
             text.setTextSize(25);
             text.setTextColor(0xff000000);
             text.setPadding(20, 20, 20, 20);
-            
-            textParams.setMargins(40, 40, 40, 40);
-            text.setLayoutParams(textParams);
             
             ret.put(text, comment.getObjectId());
         }

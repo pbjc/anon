@@ -39,33 +39,57 @@ public class PostsActivity extends Activity {
 			e.printStackTrace();
 		}
         
+		int count = 0;
         for(Post post : posts){
-            RelativeLayout.LayoutParams  textParams =
-                    new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+            RelativeLayout layout = new RelativeLayout(this);
             
-            TextView text = new TextView(this);
+            RelativeLayout.LayoutParams  textParams =
+                    new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT),
+                    numParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+            
+            TextView text = new TextView(this), numPosts = new TextView(this);
             text.setText(post.getMessage());
             text.setTypeface(Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf"));
             text.setTextSize(30);
             text.setTextColor(0xff000000);
-            text.setPadding(40, 20, 40, 20);
-            
-            textParams.setMargins(40, 40, 40, 40);
+            text.setId(10 + count);
             text.setLayoutParams(textParams);
             
-            ret.put(text, post.getObjectId());
+            try {
+                numPosts.setText(post.getAllComments().size()+" comments");
+            } catch (ParseException e) {}
+            numPosts.setTypeface(Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf"));
+            numPosts.setTextSize(15);
+            numPosts.setTextColor(0xff7f7f7f);
+            numParams.addRule(RelativeLayout.BELOW, 10 + count);
+            numPosts.setLayoutParams(numParams);
+            
+            layout.addView(text);
+            layout.addView(numPosts);
+            layout.setPadding(40, 40, 40, 40);
+            
+            ret.put(layout, post.getObjectId());
+            count++;
         }
         
         return ret;
     }
     
     private void setupGUI(String parentGroupID){
+        try {
+            TextView title = ((TextView)findViewById(R.id.tvGroup));
+            title.setText(Group.getGroupFromID(parentGroupID).getName());
+            title.setTypeface(Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf"));
+        } catch (ParseException e) {
+            Log.wtf("Shit", e+"");
+        }
+        
         final LinkedHashMap<View, String> posts = loadPosts(parentGroupID);
         
         for(final View line : posts.keySet()){
             LinearLayout layout = ((LinearLayout)findViewById(R.id.llPosts));
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-            params.setMargins(0, 40, 0, 40);
+            params.setMargins(0, 20, 0, 20);
 
 
             line.setLayoutParams(params);
