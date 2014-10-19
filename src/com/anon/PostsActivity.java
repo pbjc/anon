@@ -24,6 +24,7 @@ import com.anon.CreateNewPost.EditNameDialogListenerNewPosts;
 import com.anon.backend.Group;
 import com.anon.backend.Post;
 import com.parse.ParseException;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 public class PostsActivity extends Activity implements EditNameDialogListenerNewPosts, EditNameDialogListenerAddUsers {
@@ -158,7 +159,21 @@ public class PostsActivity extends Activity implements EditNameDialogListenerNew
 
 	@Override
 	public void onFinishEditDialogAddUsers(String inputText) {
+		Group group = null;
+		try {
+			group = Group.getGroupFromID(getIntent().getExtras().getString("parentGroupID"));
+		} catch(ParseException e) {
+			e.printStackTrace();
+		}
 		String addUserEmail = inputText;
-		
+		ParseQuery<ParseUser> userQuery = ParseQuery.getQuery("User");
+		userQuery.whereEqualTo("email", addUserEmail);
+		ParseUser user = null;
+		try {
+			user = userQuery.find().get(0);
+		} catch(ParseException e) {
+			e.printStackTrace();
+		}
+		group.addMember(user);
 	}
 }
