@@ -28,10 +28,11 @@ public class GroupsActivity extends Activity{
         String names[] = {"askfhaskdjfhaskjdf", "penis", "jacob is a baller"};
         
         for(int a = 0; a < names.length; a++){
-            RelativeLayout.LayoutParams iconParams = new RelativeLayout.LayoutParams(50, 50),
-                    textParams = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+            LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams(50, 50),
+                    textParams = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
-            RelativeLayout line = new RelativeLayout(this);
+            LinearLayout line = new LinearLayout(this);
+            line.setOrientation(LinearLayout.HORIZONTAL);
             
             TextView text = new TextView(this);
             text.setText(names[a]);
@@ -39,12 +40,9 @@ public class GroupsActivity extends Activity{
             text.setTextSize(20);
             text.setTextColor(0xffffffff);
             
-            textParams.addRule(RelativeLayout.RIGHT_OF, a); // this is terrible
-            text.setLayoutParams(textParams);
             
             icons[a].setBackgroundColor(0xffff0000);
             icons[a].setId(a);
-            iconParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
             icons[a].setLayoutParams(iconParams);
             
             line.addView(icons[a]);
@@ -68,7 +66,7 @@ public class GroupsActivity extends Activity{
             split.setLayoutParams(splitParams);
             split.setBackgroundColor(getResources().getColor(R.color.light_purple));
 
-            line.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+            line.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 100));
             
             layout.addView(line);
             layout.addView(split);
