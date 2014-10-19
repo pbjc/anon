@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class CreateNewUser extends Activity{
 
 	TextView screenTitle;
-	EditText userNameInfo, userEmailInfo, userPasswordInfo;
+	EditText userNameInfo, userEmailInfo, userPasswordInfo, userPasswordAgainInfo;
 	Button cancel, ok;
 	
 	@Override
@@ -26,7 +26,6 @@ public class CreateNewUser extends Activity{
 		setTextFonts();
 		
 		cancel.setOnClickListener(new View.OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
 				finish();	//ends activity
@@ -34,12 +33,15 @@ public class CreateNewUser extends Activity{
 		});
 		
 		ok.setOnClickListener(new View.OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
-				
+				signup();
 			}
 		});
+	}
+	
+	private void signup() {
+		
 	}
 	
 	private void initializeVars() {
@@ -47,6 +49,7 @@ public class CreateNewUser extends Activity{
 		userNameInfo = (EditText) findViewById(R.id.etNewUserNameInfo);
 		userEmailInfo = (EditText) findViewById(R.id.etNewUserEmailAddressInfo);
 		userPasswordInfo = (EditText) findViewById(R.id.etNewUserPasswordInfo);
+		userPasswordAgainInfo = (EditText) findViewById(R.id.etNewUserPasswordAgainInfo);
 		cancel = (Button) findViewById(R.id.bCancelCreateNewUser);
 		ok = (Button) findViewById(R.id.bCreateNewUser);
 	}
@@ -57,6 +60,7 @@ public class CreateNewUser extends Activity{
 		userNameInfo.setTypeface(tf);
 		userEmailInfo.setTypeface(tf);
 		userPasswordInfo.setTypeface(tf);
+		userPasswordAgainInfo.setTypeface(tf);
 		cancel.setTypeface(tf);
 		ok.setTypeface(tf);
 	}

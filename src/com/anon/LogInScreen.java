@@ -28,7 +28,6 @@ public class LogInScreen extends Activity {
 		
 		
 		logInUser.setOnClickListener(new View.OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
 				
@@ -36,7 +35,6 @@ public class LogInScreen extends Activity {
 		});
 
 		createNewUser.setOnClickListener(new View.OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
 				startActivity(new Intent(LogInScreen.this, CreateNewUser.class));
@@ -62,4 +60,5 @@ public class LogInScreen extends Activity {
 		createNewUser.setTypeface(tf);
 		logInUser.setTypeface(tf);
 	}
+
 }

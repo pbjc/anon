@@ -57,6 +57,19 @@
         android:gravity="center"
         android:inputType="textPassword" >
     </EditText>
+
+     <EditText 
+        android:id="@+id/etNewUserPasswordAgainInfo"
+        android:layout_width="285dp"
+        android:layout_height="30dp"
+        android:background="@drawable/rounded_edittext"
+        android:textColor="#000000"
+        android:singleLine="true"
+        android:layout_marginTop="10dp"
+        android:hint="@string/password_again"
+        android:gravity="center"
+        android:inputType="textPassword" >
+    </EditText>
     
     </LinearLayout>
     
