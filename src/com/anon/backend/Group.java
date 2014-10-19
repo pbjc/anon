@@ -13,6 +13,11 @@ import com.parse.ParseUser;
 @ParseClassName("Group")
 public class Group extends ParseObject {
 	
+	public static Group getGroupFromID(String ID) throws ParseException {
+		ParseQuery<Group> group = ParseQuery.getQuery("Group");
+		return group.get(ID);
+	}
+	
 	public static List<Group> getGroupsOfUser(ParseUser user) throws ParseException {
 		ParseQuery<Group> query = ParseQuery.getQuery("Group");
 		query.whereEqualTo("members", user);

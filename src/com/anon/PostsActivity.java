@@ -1,6 +1,8 @@
 package com.anon;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 import android.app.Activity;
 import android.graphics.Typeface;
@@ -9,10 +11,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.anon.backend.Comment;
+import com.anon.backend.Post;
+import com.parse.ParseException;
 
 public class PostsActivity extends Activity {
 
@@ -20,20 +25,25 @@ public class PostsActivity extends Activity {
     public void onCreate(Bundle b){
         super.onCreate(b);
         setContentView(R.layout.posts);
-        setupGUI();
+        setupGUI(b.getString("parentGroupID"));
     }
     
-    private ArrayList<View> loadPosts(){
-        ArrayList<View> ret = new ArrayList<View>();
+    private LinkedHashMap<View, String> loadPosts(String parentGroupID){
+    	LinkedHashMap<View, String> ret = new LinkedHashMap<View, String>();
+    	
+    	List<Comment> comments = null;
+		try {
+			comments = Post.getPostFromID(parentGroupID).getAllComments();
+		} catch(ParseException e) {
+			e.printStackTrace();
+		}
         
-        String posts[] = {"Shit", "Jacob is da' bomb.com", "gfgfskjdHFBAJHKDSFGAKSHDFGAKSJDHFG ASD FASDGF LAJKSHDFG KADSKL ASDGFDSLKASJD AS"};
-        
-        for(int a = 0; a < posts.length; a++){
+        for(Comment comment : comments){
             RelativeLayout.LayoutParams  textParams =
                     new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
             
             TextView text = new TextView(this);
-            text.setText(posts[a]);
+            text.setText(comment.getMessage());
             text.setTypeface(Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf"));
             text.setTextSize(30);
             text.setTextColor(0xffffffff);
@@ -42,16 +52,16 @@ public class PostsActivity extends Activity {
             textParams.setMargins(40, 40, 40, 40);
             text.setLayoutParams(textParams);
             
-            ret.add(text);
+            ret.put(text, comment.getObjectId());
         }
         
         return ret;
     }
     
-    private void setupGUI(){
-        ArrayList<View> posts = loadPosts();
+    private void setupGUI(String parentGroupID){
+        LinkedHashMap<View, String> posts = loadPosts(parentGroupID);
         
-        for(View line : posts){
+        for(View line : posts.keySet()){
             LinearLayout layout = ((LinearLayout)findViewById(R.id.llPosts));
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
             params.setMargins(0, 40, 0, 40);

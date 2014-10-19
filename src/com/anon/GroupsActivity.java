@@ -76,9 +76,9 @@ public class GroupsActivity extends Activity {
     }
     
     private void setupGUI(){
-    	LinkedHashMap<View, String> groups = loadGroups();
+    	final LinkedHashMap<View, String> groups = loadGroups();
         
-        for(View line : groups.keySet()){
+        for(final View line : groups.keySet()){
             LinearLayout layout = ((LinearLayout)findViewById(R.id.llGroups));
             
             View split = new View(this);
@@ -94,6 +94,7 @@ public class GroupsActivity extends Activity {
                 public void onClick(View v) {
                     Intent intent = new Intent(GroupsActivity.this, PostsActivity.class);
                     Bundle groupInfo = new Bundle();
+                    groupInfo.putString("parentGroupID", groups.get(line));
                     intent.putExtras(groupInfo);
                     startActivity(intent);
                 }
