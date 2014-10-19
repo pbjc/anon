@@ -152,7 +152,9 @@ public class GroupsActivity extends Activity implements EditNameDialogListener {
 	@Override
     public void onFinishEditDialog(String inputText) {
         String groupName = inputText;
-        Log.wtf("yo", inputText);
+        new Group(groupName, null, ParseUser.getCurrentUser());
+        finish();
+        startActivity(getIntent());
     }
 
 }

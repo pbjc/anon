@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/mbGroupPageCreateNewPost"
+        android:icon="@drawable/ic_action_post"
+        android:showAsAction="ifRoom"
+        android:title="@string/search_groups"/>
+
+    <!--
+    Overflow 
+    
+    <item android:id="@+id/mbGroupsSettings"
+          android:title="@string/settings"
+          android:showAsAction="never" />
+    
+    <item android:id="@+id/mbGroupsSignOut"
+          android:title="@string/sign_out"
+          android:showAsAction="never" />
+    -->
+
+</menu>
