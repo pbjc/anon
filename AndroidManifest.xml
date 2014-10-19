@@ -67,7 +67,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.anon.PostsActivity"
+            android:name="com.anon.CommentsActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
