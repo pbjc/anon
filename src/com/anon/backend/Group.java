@@ -14,8 +14,11 @@ import com.parse.ParseUser;
 public class Group extends ParseObject {
 	
 	public static Group getGroupFromID(String ID) throws ParseException {
-		ParseQuery<Group> group = ParseQuery.getQuery("Group");
-		return group.get(ID);
+		ParseQuery<Group> groupQuery = ParseQuery.getQuery("Group");
+		groupQuery.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
+		Group group = groupQuery.get(ID);
+		group.pin();
+		return group;
 	}
 	
 	public static List<Group> getGroupsOfUser(ParseUser user) throws ParseException {
