@@ -29,6 +29,7 @@ public class CreateNewUser extends Activity{
 			@Override
 			public void onClick(View v) {
 				finish();	//ends activity
+				overridePendingTransition(0, 0);
 			}
 		});
 		
