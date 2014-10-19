@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -82,11 +83,11 @@ public class GroupsActivity extends Activity implements EditNameDialogListener {
 	
 	private void setupGUI() {
 		final LinkedHashMap<View, String> groups = loadGroups();
+		LinearLayout layout = ((LinearLayout) findViewById(R.id.llGroups));
 		
 		for(final View line : groups.keySet()) {
-			LinearLayout layout = ((LinearLayout) findViewById(R.id.llGroups));
-			
 			View split = new View(this);
+
 			LinearLayout.LayoutParams splitParams = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 2);
 			split.setPadding(10, 10, 10, 10);
 			split.setLayoutParams(splitParams);
@@ -108,6 +109,18 @@ public class GroupsActivity extends Activity implements EditNameDialogListener {
 			
 			layout.addView(line);
 			layout.addView(split);
+		}
+		
+		if(groups.size() == 0){
+		    LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+            TextView text = new TextView(this);
+            text.setTypeface(Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf"));
+            text.setTextSize(35);
+            text.setTextColor(getResources().getColor(R.color.light_purple));
+            textParams.setMargins(20, 20, 20, 20);
+            text.setText(getResources().getString(R.string.loser));
+            text.setGravity(Gravity.CENTER);
+		    layout.addView(text);
 		}
 	}
 	

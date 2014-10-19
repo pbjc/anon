@@ -37,6 +37,8 @@
     <string name="progress_login">Logging in...</string>
     <string name="progress_signup">Signing in...</string>
 
+    <string name="loser">You don\'t have any groups!\n\n↑ Add one now ↑</string>
+    
     <!-- ******* Post Testing ******* -->
     <string name="message">Enter message</string>
     <string name="button_send">Send</string>
