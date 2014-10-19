@@ -25,21 +25,15 @@ public class DispatchActivity extends Activity {
 				ParseUser.logIn(email, password);
 				if (ParseUser.getCurrentUser() != null) {
 					gotoGroups();
-				} else {
-					Toast.makeText(DispatchActivity.this,
-							"There was an error logging in", Toast.LENGTH_SHORT)
-							.show();
-					gotoLogin();
+					return;
 				}
 			} catch (ParseException e) {
 				Toast.makeText(DispatchActivity.this,
 						"There was an error logging in", Toast.LENGTH_SHORT)
 						.show();
-				gotoLogin();
 			}
-		} else {
-			gotoLogin();
 		}
+		gotoLogin();
 	}
 
 	private void gotoGroups() {

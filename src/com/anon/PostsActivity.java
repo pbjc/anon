@@ -105,7 +105,7 @@ public class PostsActivity extends Activity implements EditNameDialogListenerNew
                     Intent intent = new Intent(PostsActivity.this,
                             CommentsActivity.class);
                     Bundle groupInfo = new Bundle();
-                    groupInfo.putString("parentGroupID", posts.get(line));
+                    groupInfo.putString("parentPostID", posts.get(line));
                     intent.putExtras(groupInfo);
                     startActivity(intent);
                 }
@@ -119,7 +119,7 @@ public class PostsActivity extends Activity implements EditNameDialogListenerNew
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.specific_group_page_activity_menu, menu);
+		inflater.inflate(R.menu.posts_page_activity_menu, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -146,5 +146,7 @@ public class PostsActivity extends Activity implements EditNameDialogListenerNew
 			e.printStackTrace();
 		}
 		new Post(postText, group, ParseUser.getCurrentUser());
+		finish();
+        startActivity(getIntent());
 	}
 }

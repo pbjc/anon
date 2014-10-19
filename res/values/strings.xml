@@ -15,6 +15,7 @@
     <string name="sign_out">Sign Out</string>
     <string name="group_name">Group Name</string>
     <string name="new_post">New Post</string>
+    <string name="new_comment">New Comment</string>
 
     <string name="alert_name_clarification"><u>Why do you need this?</u></string>
     <string name="alert_name_title">Why do we need your name?</string>
