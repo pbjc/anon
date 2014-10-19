@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class GroupsActivity extends Activity{
+public class GroupsActivity extends Activity {
 
     @Override
     public void onCreate(Bundle b){
