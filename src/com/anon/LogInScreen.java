@@ -73,8 +73,6 @@ public class LogInScreen extends Activity {
 				startActivity(intent);
 			}
 		});
-
-		ParseAnalytics.trackAppOpened(getIntent());
 	}
 
 	private void login() {
