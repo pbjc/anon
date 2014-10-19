@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/LogInTheme" >
+    style="@style/CustomActionBarTheme"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_purple" >
 
     <TextView
         android:id="@+id/tvLogInScreenTitle"
@@ -9,7 +12,7 @@
         android:layout_marginTop="35dp"
         android:gravity="center"
         android:text="@string/app_name"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:textSize="50dp" >
     </TextView>
 
@@ -23,26 +26,26 @@
         <EditText
             android:id="@+id/etLoginEmailAddress"
             android:layout_width="285dp"
-            android:layout_height="30dp"
+            android:layout_height="43dp"
             android:background="@drawable/rounded_edittext"
             android:gravity="center"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:singleLine="true"
-            android:textColor="#000000" >
+            android:textColor="@color/black" >
         </EditText>
 
         <EditText
             android:id="@+id/etLoginPassword"
             android:layout_width="285dp"
-            android:layout_height="30dp"
+            android:layout_height="43dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/rounded_edittext"
             android:gravity="center"
             android:hint="@string/password"
             android:inputType="textPassword"
             android:singleLine="true"
-            android:textColor="#000000" >
+            android:textColor="@color/black" >
         </EditText>
     </LinearLayout>
 
@@ -59,7 +62,7 @@
             android:layout_width="125dp"
             android:layout_height="match_parent"
             android:text="@string/create_acct"
-            android:color="#9933CC" >
+            android:color="@color/light_purple" >
         </Button>
 
         <Button
@@ -68,7 +71,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:text="@string/log_me_in"
-            android:color="#9933CC" >
+            android:color="@color/light_purple" >
         </Button>
     </LinearLayout>
 

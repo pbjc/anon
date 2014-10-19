@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/LogInTheme">
+    style="@style/CustomActionBarTheme"
+    android:background="@color/light_purple"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/tvCreateNewUserTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/create_acct"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="40dp"
         android:textSize = "30dp"
         android:gravity="center"
         android:textColor="#FFFFFF" >
@@ -23,7 +26,7 @@
     <EditText 
         android:id="@+id/etNewUserNameInfo"
         android:layout_width="285dp"
-        android:layout_height="30dp"
+        android:layout_height="43dp"
         android:background="@drawable/rounded_edittext"
         android:textColor="#000000"
         android:hint="@string/name"
@@ -35,7 +38,7 @@
     <EditText 
         android:id="@+id/etNewUserEmailAddressInfo"
         android:layout_width="285dp"
-        android:layout_height="30dp"
+        android:layout_height="43dp"
         android:background="@drawable/rounded_edittext"
         android:textColor="#000000"
         android:hint="@string/email"
@@ -48,12 +51,25 @@
     <EditText 
         android:id="@+id/etNewUserPasswordInfo"
         android:layout_width="285dp"
-        android:layout_height="30dp"
+        android:layout_height="43dp"
         android:background="@drawable/rounded_edittext"
         android:textColor="#000000"
         android:singleLine="true"
         android:layout_marginTop="10dp"
         android:hint="@string/password"
+        android:gravity="center"
+        android:inputType="textPassword" >
+    </EditText>
+
+     <EditText 
+        android:id="@+id/etNewUserPasswordAgainInfo"
+        android:layout_width="285dp"
+        android:layout_height="43dp"
+        android:background="@drawable/rounded_edittext"
+        android:textColor="#000000"
+        android:singleLine="true"
+        android:layout_marginTop="10dp"
+        android:hint="@string/password_again"
         android:gravity="center"
         android:inputType="textPassword" >
     </EditText>
