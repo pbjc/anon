@@ -23,7 +23,7 @@
     <EditText 
         android:id="@+id/etNewUserNameInfo"
         android:layout_width="285dp"
-        android:layout_height="30dp"
+        android:layout_height="43dp"
         android:background="@drawable/rounded_edittext"
         android:textColor="#000000"
         android:hint="@string/name"
@@ -35,7 +35,7 @@
     <EditText 
         android:id="@+id/etNewUserEmailAddressInfo"
         android:layout_width="285dp"
-        android:layout_height="30dp"
+        android:layout_height="43dp"
         android:background="@drawable/rounded_edittext"
         android:textColor="#000000"
         android:hint="@string/email"
@@ -48,7 +48,7 @@
     <EditText 
         android:id="@+id/etNewUserPasswordInfo"
         android:layout_width="285dp"
-        android:layout_height="30dp"
+        android:layout_height="43dp"
         android:background="@drawable/rounded_edittext"
         android:textColor="#000000"
         android:singleLine="true"
