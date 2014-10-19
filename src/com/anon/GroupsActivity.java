@@ -4,9 +4,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,11 +21,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.anon.CreateNewGroup.EditNameDialogListener;
 import com.anon.backend.Group;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
-public class GroupsActivity extends Activity {
+public class GroupsActivity extends Activity implements EditNameDialogListener {
 
 	@Override
 	public void onCreate(Bundle b) {
@@ -125,16 +128,16 @@ public class GroupsActivity extends Activity {
 			Toast.makeText(GroupsActivity.this, "Not implemented yet", Toast.LENGTH_SHORT).show();
 			return true;
 		case R.id.mbGroupsCreateNewGroup:
-			Intent i = new Intent(GroupsActivity.this,
-					CreateNewGroupActivity.class);
-			startActivity(i);
+			FragmentManager fm = getFragmentManager();
+	        CreateNewGroup createNewGroupDialog = new CreateNewGroup();
+	        createNewGroupDialog.show(fm, "createNewGroupDialog");
 			return true;
 		case R.id.mbGroupsSettings:
 			Toast.makeText(GroupsActivity.this, "Not implemented yet", Toast.LENGTH_SHORT).show();
 			return true;
 		case R.id.mbGroupsSignOut:
 			ParseUser.logOut();
-			i = new Intent(GroupsActivity.this, LogInScreen.class);
+			Intent i = new Intent(GroupsActivity.this, LogInScreen.class);
 			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK
 					| Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(i);
@@ -143,5 +146,11 @@ public class GroupsActivity extends Activity {
 			return super.onOptionsItemSelected(item);
 		}
 	}
+	
+	@Override
+    public void onFinishEditDialog(String inputText) {
+        String groupName = inputText;
+        Log.wtf("yo", inputText);
+    }
 
 }
