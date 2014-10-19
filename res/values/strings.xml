@@ -13,6 +13,7 @@
     <string name="search_groups">Search Your Groups</string>
     <string name="settings">Settings</string>
     <string name="sign_out">Sign Out</string>
+    <string name="group_name">Group Name</string>
 
     <string name="alert_name_clarification"><u>Why do you need this?</u></string>
     <string name="alert_name_title">Why do we need your name?</string>
