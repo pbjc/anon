@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.parse.Parse;
 import com.parse.ParseACL;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 public class ParseApplication extends Application {
@@ -12,6 +13,8 @@ public class ParseApplication extends Application {
   public void onCreate() {
     super.onCreate();
 
+    ParseObject.registerSubclass(Post.class);
+    
     // Add your initialization code here
     Parse.initialize(this, "03BKZLIMEoWsiabvkIpaDWHYCRApQwobb4tOKeBo", "A49RaubTM6QJETtEJllPvnCqE4mcWJhTXh4GvplJ");
 
