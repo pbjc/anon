@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_grey" 
-    android:padding="10dp">
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp">
     
     <ScrollView android:id="@+id/svPosts"
         android:layout_width="match_parent"

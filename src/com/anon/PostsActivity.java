@@ -26,7 +26,7 @@ public class PostsActivity extends Activity {
     private ArrayList<View> loadPosts(){
         ArrayList<View> ret = new ArrayList<View>();
         
-        String posts[] = {"Shit", "Jacob is da' bomb.com", "gfgfskjdHFBAJHKDSFGAKSHDFGAKSJDHFG ASD FASDGF LAJKSHDFG KADSKL ASDGFDSLKASJD AS"};
+        String posts[] = {"Shit", "Jacob is da' bomb.com", "Jacob is da' bomb.com", "Jacob is da' bomb.com", "Jacob is da' bomb.com", "Jacob is da' bomb.com", "Jacob is da' bomb.com", "Jacob is da' bomb.com", "Jacob is da' bomb.com", "gfgfskjdHFBAJHKDSFGAKSHDFGAKSJDHFG ASD FASDGF LAJKSHDFG KADSKL ASDGFDSLKASJD AS"};
         
         for(int a = 0; a < posts.length; a++){
             RelativeLayout.LayoutParams  textParams =
