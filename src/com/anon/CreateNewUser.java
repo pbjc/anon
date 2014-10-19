@@ -38,6 +38,7 @@ public class CreateNewUser extends Activity {
 		cancel.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+
 				finish(); // ends activity
 			}
 		});
