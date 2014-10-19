@@ -7,5 +7,13 @@
         <item name="android:background">#AA66CC</item>
         <item name="android:orientation">vertical</item>
     </style>
+    
+    <style name="AppTheme" parent="@android:style/Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/ActionBarTheme</item>
+    </style>
+
+    <style name="ActionBarTheme" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@color/light_purple</item>
+    </style>
 
 </resources>
