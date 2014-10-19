@@ -153,6 +153,13 @@ public class GroupsActivity extends Activity implements EditNameDialogListener {
 			Intent i = new Intent(GroupsActivity.this, LogInScreen.class);
 			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(i);
+			
+			SharedPreferences settings = getSharedPreferences(DispatchActivity.PREFS_NAME, 0);
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putString("email", "");
+			editor.putString("password", "");
+			editor.commit();
+			
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
