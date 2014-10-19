@@ -9,6 +9,17 @@
     <string name="name">First and Last Name</string>
     <string name="ok">OK!</string>
     <string name="cancel">Cancel</string>
+    <string name="create_new_group">Create New Group</string>
+    <string name="search_groups">Search Your Groups</string>
+    <string name="settings">Settings</string>
+    <string name="sign_out">Sign Out</string>
+
+    <string name="alert_name_clarification"><u>Why do you need this?</u></string>
+    <string name="alert_name_title">Why do we need your name?</string>
+    <string name="alert_name_text">While all of your posts and comments
+        are completely anonymous, other members in your group have the ability
+        to see who is in the group. To do this, we need your name. Your identity
+        will remain completely unknown at all other times!</string>
     
     <string name="error_intro">"Please "</string>
     <string name="error_blank_username">enter a username</string>

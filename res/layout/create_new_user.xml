@@ -31,6 +31,17 @@
         android:gravity="center"
         android:inputType="textPersonName" >
     </EditText>
+
+    <TextView
+        android:id="@+id/tvNameClarification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/alert_name_clarification"
+        android:layout_marginTop="10dp"
+        android:textSize = "15dp"
+        android:gravity="center"
+        android:textColor="#FFFFFF" >
+    </TextView>
     
     <EditText 
         android:id="@+id/etNewUserEmailAddressInfo"
@@ -86,6 +97,7 @@
             android:layout_width="125dp"
             android:layout_height="match_parent"
             android:text="@string/cancel"
+            android:textColor="@color/white"
             android:color="#9933CC" >
         </Button>
         
@@ -95,6 +107,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:text="@string/ok"
+            android:textColor="@color/white"
             android:color="#9933CC"  >
         </Button>
         

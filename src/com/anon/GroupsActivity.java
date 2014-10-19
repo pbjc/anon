@@ -1,12 +1,17 @@
 package com.anon;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -28,8 +33,8 @@ public class GroupsActivity extends Activity {
         setupGUI();
     }
     
-    private ArrayList<View> loadGroups(){
-        ArrayList<View> ret = new ArrayList<View>();
+    private LinkedHashMap<View, String> loadGroups(){
+        LinkedHashMap<View, String> ret = new LinkedHashMap<View, String>();
         
         List<Group> usersGroups = null;
         try {
@@ -45,44 +50,47 @@ public class GroupsActivity extends Activity {
         }
         
         names = new String[]{ "crap crap crap crap crap crap crap crap crap crap crap crap crap crap crap ", "crap", "crap" };
+
         ImageView icons[] = { new ImageView(this), new ImageView(this), new ImageView(this) };
         
-        for(int a = 0; a < names.length; a++){
+        for(int i = 0; i < usersGroups.size(); i++){
+        	Group group = usersGroups.get(i);
+        	
             RelativeLayout.LayoutParams iconParams = new RelativeLayout.LayoutParams(150, 150),
                     textParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
             
             RelativeLayout line = new RelativeLayout(this);
             
             TextView text = new TextView(this);
-            text.setText(names[a]);
+            text.setText(group.getName());
             text.setTypeface(Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf"));
             text.setTextSize(30);
             text.setTextColor(0xff000000);
             textParams.setMargins(20, 20, 20, 20);
             textParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
-            textParams.addRule(RelativeLayout.RIGHT_OF, a+10);
+            textParams.addRule(RelativeLayout.RIGHT_OF, i+10);
             
-            icons[a].setBackgroundColor(0xffff0000);
-            icons[a].setId(a+10);
+            icons[i].setBackgroundColor(0xffff0000);
+            icons[i].setId(i+10);
             iconParams.setMargins(10, 10, 10, 30);
             iconParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
 
             text.setLayoutParams(textParams);
-            icons[a].setLayoutParams(iconParams);
+            icons[i].setLayoutParams(iconParams);
             
-            line.addView(icons[a]);
+            line.addView(icons[i]);
             line.addView(text);
             
-            ret.add(line);
+            ret.put(line, group.getObjectId());
         }
         
         return ret;
     }
     
     private void setupGUI(){
-        ArrayList<View> groups = loadGroups();
+    	final LinkedHashMap<View, String> groups = loadGroups();
         
-        for(View line : groups){
+        for(final View line : groups.keySet()){
             LinearLayout layout = ((LinearLayout)findViewById(R.id.llGroups));
             
             View split = new View(this);
@@ -98,6 +106,7 @@ public class GroupsActivity extends Activity {
                 public void onClick(View v) {
                     Intent intent = new Intent(GroupsActivity.this, PostsActivity.class);
                     Bundle groupInfo = new Bundle();
+                    groupInfo.putString("parentGroupID", groups.get(line));
                     intent.putExtras(groupInfo);
                     startActivity(intent);
                 }
@@ -107,5 +116,34 @@ public class GroupsActivity extends Activity {
             layout.addView(split);
         }
     }
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.groups_activity_menu, menu);
+	    return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		switch (item.getItemId()) {
+        case R.id.mbGroupsSearchGroups:
+            //dostuff
+            return true;
+        case R.id.mbGroupsCreateNewGroup:
+            Intent i = new Intent(GroupsActivity.this, CreateNewGroupActivity.class);
+            startActivity(i);
+            return true;
+        case R.id.mbGroupsSettings:
+            //dostuff
+            return true;
+        case R.id.mbGroupsSignOut:
+            //dostuff
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+    }
+	}
     
 }

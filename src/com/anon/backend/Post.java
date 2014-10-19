@@ -18,6 +18,11 @@ import com.parse.ParseUser;
 @ParseClassName("Post")
 public class Post extends ParseObject {
 	
+	public static Post getPostFromID(String ID) throws ParseException {
+		ParseQuery<Post> post = ParseQuery.getQuery("Post");
+		return post.get(ID);
+	}
+	
 	public Post() {} 
 	
 	public Post(String text, Group parentGroup, ParseUser author) {
