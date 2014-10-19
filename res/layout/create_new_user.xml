@@ -97,6 +97,7 @@
             android:layout_width="125dp"
             android:layout_height="match_parent"
             android:text="@string/cancel"
+            android:textColor="@color/white"
             android:color="#9933CC" >
         </Button>
         
@@ -106,6 +107,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:text="@string/ok"
+            android:textColor="@color/white"
             android:color="#9933CC"  >
         </Button>
         

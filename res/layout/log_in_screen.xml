@@ -59,6 +59,7 @@
             android:layout_width="125dp"
             android:layout_height="match_parent"
             android:text="@string/create_acct"
+            android:textColor="@color/white"
             android:color="@color/light_purple" >
         </Button>
 
@@ -68,6 +69,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:text="@string/log_me_in"
+            android:textColor="@color/white"
             android:color="@color/light_purple" >
         </Button>
     </LinearLayout>
