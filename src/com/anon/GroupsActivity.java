@@ -8,6 +8,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -104,5 +108,34 @@ public class GroupsActivity extends Activity {
             layout.addView(split);
         }
     }
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.groups_activity_menu, menu);
+	    return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		switch (item.getItemId()) {
+        case R.id.mbGroupsSearchGroups:
+            //dostuff
+            return true;
+        case R.id.mbGroupsCreateNewGroup:
+            Intent i = new Intent(GroupsActivity.this, CreateNewGroupActivity.class);
+            startActivity(i);
+            return true;
+        case R.id.mbGroupsSettings:
+            //dostuff
+            return true;
+        case R.id.mbGroupsSignOut:
+            //dostuff
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+    }
+	}
     
 }

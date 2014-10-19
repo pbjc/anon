@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="PurpleBackgroundTheme" parent="@android:style/TextAppearance.Medium">
          <item name="android:layout_width">match_parent</item>
@@ -13,6 +13,12 @@
 
     <style name="ActionBarTheme" parent="@android:style/Widget.Holo.Light.ActionBar">
         <item name="android:background">@color/light_purple</item>
+        <item name="android:titleTextStyle">@style/ActionBarTheme.Title</item>
+    </style>
+    
+    <style name="ActionBarTheme.Title" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">25dp</item>
     </style>
 
 </resources>
