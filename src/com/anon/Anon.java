@@ -6,7 +6,7 @@ import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseUser;
 
-public class ParseApplication extends Application {
+public class Anon extends Application {
 
     @Override
     public void onCreate() {
