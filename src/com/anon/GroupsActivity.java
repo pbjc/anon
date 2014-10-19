@@ -42,10 +42,8 @@ public class GroupsActivity extends Activity {
 			e.printStackTrace();
 		}
 
-		ImageView icons[] = { new ImageView(this), new ImageView(this),
-				new ImageView(this) };
-
 		for (int i = 0; i < usersGroups.size(); i++) {
+		    ImageView icon = new ImageView(this);
             Group group = usersGroups.get(i);
             
             RelativeLayout.LayoutParams iconParams = new RelativeLayout.LayoutParams(150, 150),
@@ -62,15 +60,15 @@ public class GroupsActivity extends Activity {
             textParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
             textParams.addRule(RelativeLayout.RIGHT_OF, i+10);
             
-            icons[i].setBackgroundColor(0xffff0000);
-            icons[i].setId(i+10);
+            icon.setBackgroundColor(0xffff0000);
+            icon.setId(i+10);
             iconParams.setMargins(10, 10, 10, 30);
             iconParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
 
             text.setLayoutParams(textParams);
-            icons[i].setLayoutParams(iconParams);
+            icon.setLayoutParams(iconParams);
             
-            line.addView(icons[i]);
+            line.addView(icon);
             line.addView(text);
             
             ret.put(line, group.getObjectId());

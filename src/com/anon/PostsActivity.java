@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.anon.backend.Comment;
 import com.anon.backend.Group;
 import com.anon.backend.Post;
 import com.parse.ParseException;
@@ -60,9 +60,9 @@ public class PostsActivity extends Activity {
     }
     
     private void setupGUI(String parentGroupID){
-        LinkedHashMap<View, String> posts = loadPosts(parentGroupID);
+        final LinkedHashMap<View, String> posts = loadPosts(parentGroupID);
         
-        for(View line : posts.keySet()){
+        for(final View line : posts.keySet()){
             LinearLayout layout = ((LinearLayout)findViewById(R.id.llPosts));
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
             params.setMargins(0, 40, 0, 40);
@@ -72,10 +72,15 @@ public class PostsActivity extends Activity {
             line.setClickable(true);
             line.setOnClickListener(new OnClickListener() {
                 public void onClick(View v) {
-                    Log.wtf("Arjun", "Sucks");
+                    Intent intent = new Intent(PostsActivity.this,
+                            CommentsActivity.class);
+                    Bundle groupInfo = new Bundle();
+                    groupInfo.putString("parentGroupID", posts.get(line));
+                    intent.putExtras(groupInfo);
+                    startActivity(intent);
                 }
             });
-            line.setBackgroundColor(getResources().getColor(R.color.white));
+            line.setBackground(getResources().getDrawable(R.drawable.post_background));
             
             layout.addView(line);
         }
