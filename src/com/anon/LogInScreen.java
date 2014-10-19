@@ -39,7 +39,9 @@ public class LogInScreen extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(LogInScreen.this, CreateNewUser.class));
+			    Intent intent = new Intent(LogInScreen.this, CreateNewUser.class);
+	            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+				startActivity(intent);
 			}
 		});
 
