@@ -104,7 +104,8 @@ public class CreateNewUser extends Activity {
 		dialog.show();
 
 		ParseUser user = new ParseUser();
-		user.setUsername(username);
+		user.put("name", username);
+		user.setUsername(email);
 		user.setPassword(password);
 		user.setEmail(email);
 
