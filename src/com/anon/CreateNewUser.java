@@ -31,9 +31,13 @@ public class CreateNewUser extends Activity {
 		setContentView(R.layout.create_new_user);
 
 		overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-		
+
 		initializeVars();
 		setTextFonts();
+
+		// fill in email and password from login screen
+		Bundle accountInfo = getIntent().getExtras();
+		userEmailInfo.setText(accountInfo.getString("email"));
 
 		cancel.setOnClickListener(new View.OnClickListener() {
 			@Override

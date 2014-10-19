@@ -37,16 +37,16 @@ public class LogInScreen extends Activity {
 
 		userPasswordInfo
 				.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-			@Override
-			public boolean onEditorAction(TextView v, int actionId,
-					KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                        login();
-                        return true;
-                }
-                return false;
-			}
-        });
+					@Override
+					public boolean onEditorAction(TextView v, int actionId,
+							KeyEvent event) {
+						if (actionId == EditorInfo.IME_ACTION_DONE) {
+							login();
+							return true;
+						}
+						return false;
+					}
+				});
 
 		logInUser.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -60,6 +60,16 @@ public class LogInScreen extends Activity {
 			public void onClick(View v) {
 				Intent intent = new Intent(LogInScreen.this,
 						CreateNewUser.class);
+
+				// if the user has entered email, send it to
+				// the account creation screen
+				Bundle accountInfo = new Bundle();
+				if (userEmailAddressInfo.getText().length() > 0) {
+					accountInfo.putString("email", userEmailAddressInfo
+							.getText().toString().trim());
+				}
+
+				intent.putExtras(accountInfo);
 				startActivity(intent);
 			}
 		});
