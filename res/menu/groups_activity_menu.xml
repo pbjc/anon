@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <item android:id="@+id/mbGroupsSearchGroups"
+          android:icon="@drawable/ic_action_search"
+          android:title="@string/search_groups"
+          android:showAsAction="ifRoom" />
+    
+    <item android:id="@+id/mbGroupsCreateNewGroup"
+          android:icon="@drawable/ic_action_new"
+          android:title="@string/create_new_group"
+          android:showAsAction="ifRoom" />
+    
+    
+    <!-- Overflow -->
+    
+    <item android:id="@+id/mbGroupsSettings"
+          android:title="@string/settings"
+          android:showAsAction="never" />
+    
+    <item android:id="@+id/mbGroupsSignOut"
+          android:title="@string/sign_out"
+          android:showAsAction="never" />
+
+</menu>
