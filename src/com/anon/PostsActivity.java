@@ -28,6 +28,7 @@ public class PostsActivity extends Activity {
         setupGUI(getIntent().getExtras().getString("parentGroupID"));
     }
     
+
     private LinkedHashMap<View, String> loadPosts(String parentGroupID){
     	LinkedHashMap<View, String> ret = new LinkedHashMap<View, String>();
     	
@@ -46,7 +47,7 @@ public class PostsActivity extends Activity {
             text.setText(post.getMessage());
             text.setTypeface(Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf"));
             text.setTextSize(30);
-            text.setTextColor(0xffffffff);
+            text.setTextColor(0xff000000);
             text.setPadding(40, 20, 40, 20);
             
             textParams.setMargins(40, 40, 40, 40);
@@ -63,8 +64,9 @@ public class PostsActivity extends Activity {
         
         for(View line : posts.keySet()){
             LinearLayout layout = ((LinearLayout)findViewById(R.id.llPosts));
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
             params.setMargins(0, 40, 0, 40);
+
 
             line.setLayoutParams(params);
             line.setClickable(true);
@@ -73,7 +75,7 @@ public class PostsActivity extends Activity {
                     Log.wtf("Arjun", "Sucks");
                 }
             });
-            line.setBackgroundColor(getResources().getColor(R.color.dark_blue));
+            line.setBackgroundColor(getResources().getColor(R.color.white));
             
             layout.addView(line);
         }
