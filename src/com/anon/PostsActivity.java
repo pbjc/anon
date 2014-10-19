@@ -1,6 +1,5 @@
 package com.anon;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -16,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.anon.backend.Comment;
+import com.anon.backend.Group;
 import com.anon.backend.Post;
 import com.parse.ParseException;
 
@@ -25,25 +25,25 @@ public class PostsActivity extends Activity {
     public void onCreate(Bundle b){
         super.onCreate(b);
         setContentView(R.layout.posts);
-        setupGUI(b.getString("parentGroupID"));
+        setupGUI(getIntent().getExtras().getString("parentGroupID"));
     }
     
     private LinkedHashMap<View, String> loadPosts(String parentGroupID){
     	LinkedHashMap<View, String> ret = new LinkedHashMap<View, String>();
     	
-    	List<Comment> comments = null;
+    	List<Post> posts = null;
 		try {
-			comments = Post.getPostFromID(parentGroupID).getAllComments();
+			posts = Group.getGroupFromID(parentGroupID).getAllPosts();
 		} catch(ParseException e) {
 			e.printStackTrace();
 		}
         
-        for(Comment comment : comments){
+        for(Post post : posts){
             RelativeLayout.LayoutParams  textParams =
                     new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
             
             TextView text = new TextView(this);
-            text.setText(comment.getMessage());
+            text.setText(post.getMessage());
             text.setTypeface(Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf"));
             text.setTextSize(30);
             text.setTextColor(0xffffffff);
@@ -52,7 +52,7 @@ public class PostsActivity extends Activity {
             textParams.setMargins(40, 40, 40, 40);
             text.setLayoutParams(textParams);
             
-            ret.put(text, comment.getObjectId());
+            ret.put(text, post.getObjectId());
         }
         
         return ret;
