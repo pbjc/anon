@@ -1,6 +1,7 @@
 package com.anon;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -18,14 +19,13 @@ import com.parse.SignUpCallback;
 
 public class CreateNewUser extends Activity {
 
-	TextView screenTitle;
+	TextView screenTitle, nameClarification;
 	EditText userNameInfo, userEmailInfo, userPasswordInfo,
 			userPasswordAgainInfo;
 	Button cancel, ok;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE); // removes title bar
 		setContentView(R.layout.create_new_user);
@@ -38,6 +38,13 @@ public class CreateNewUser extends Activity {
 		// fill in email from login screen
 		Bundle accountInfo = getIntent().getExtras();
 		userEmailInfo.setText(accountInfo.getString("email"));
+
+		nameClarification.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				alertNameClarification();
+			}
+		});
 
 		cancel.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -131,6 +138,14 @@ public class CreateNewUser extends Activity {
 		});
 	}
 
+	private void alertNameClarification() {
+		new AlertDialog.Builder(this)
+			.setTitle(getString(R.string.alert_name_title))
+			.setMessage(getString(R.string.alert_name_text))
+			.setPositiveButton(getString(R.string.ok), null)
+			.show();
+	}
+
 	private boolean isValidEmailAddress(String email) {
 		String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
 		java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
@@ -141,6 +156,7 @@ public class CreateNewUser extends Activity {
 	private void initializeVars() {
 		screenTitle = (TextView) findViewById(R.id.tvCreateNewUserTitle);
 		userNameInfo = (EditText) findViewById(R.id.etNewUserNameInfo);
+		nameClarification = (TextView) findViewById(R.id.tvNameClarification);
 		userEmailInfo = (EditText) findViewById(R.id.etNewUserEmailAddressInfo);
 		userPasswordInfo = (EditText) findViewById(R.id.etNewUserPasswordInfo);
 		userPasswordAgainInfo = (EditText) findViewById(R.id.etNewUserPasswordAgainInfo);
