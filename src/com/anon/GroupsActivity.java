@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.anon.backend.Group;
 import com.parse.ParseException;
@@ -123,7 +124,7 @@ public class GroupsActivity extends Activity {
 		// TODO Auto-generated method stub
 		switch (item.getItemId()) {
 		case R.id.mbGroupsSearchGroups:
-			// dostuff
+			Toast.makeText(GroupsActivity.this, "Not implemented yet", Toast.LENGTH_SHORT).show();
 			return true;
 		case R.id.mbGroupsCreateNewGroup:
 			Intent i = new Intent(GroupsActivity.this,
@@ -131,7 +132,7 @@ public class GroupsActivity extends Activity {
 			startActivity(i);
 			return true;
 		case R.id.mbGroupsSettings:
-			// dostuff
+			Toast.makeText(GroupsActivity.this, "Not implemented yet", Toast.LENGTH_SHORT).show();
 			return true;
 		case R.id.mbGroupsSignOut:
 			ParseUser.logOut();
