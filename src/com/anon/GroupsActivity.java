@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
@@ -46,35 +47,39 @@ public class GroupsActivity extends Activity {
 				new ImageView(this) };
 
 		for (int i = 0; i < usersGroups.size(); i++) {
-            Group group = usersGroups.get(i);
-            
-            RelativeLayout.LayoutParams iconParams = new RelativeLayout.LayoutParams(150, 150),
-                    textParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-            
-            RelativeLayout line = new RelativeLayout(this);
-            
-            TextView text = new TextView(this);
-            text.setText(group.getName());
-            text.setTypeface(Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf"));
-            text.setTextSize(30);
-            text.setTextColor(0xff000000);
-            textParams.setMargins(20, 20, 20, 20);
-            textParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
-            textParams.addRule(RelativeLayout.RIGHT_OF, i+10);
-            
-            icons[i].setBackgroundColor(0xffff0000);
-            icons[i].setId(i+10);
-            iconParams.setMargins(10, 10, 10, 30);
-            iconParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
+			Group group = usersGroups.get(i);
 
-            text.setLayoutParams(textParams);
-            icons[i].setLayoutParams(iconParams);
-            
-            line.addView(icons[i]);
-            line.addView(text);
-            
-            ret.put(line, group.getObjectId());
-        }
+			RelativeLayout.LayoutParams iconParams = new RelativeLayout.LayoutParams(
+					150, 150), textParams = new RelativeLayout.LayoutParams(
+					LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+
+			RelativeLayout line = new RelativeLayout(this);
+
+			TextView text = new TextView(this);
+			text.setText(group.getName());
+			text.setTypeface(Typeface.createFromAsset(getAssets(),
+					"Roboto-Light.ttf"));
+			text.setTextSize(30);
+			text.setTextColor(0xff000000);
+			textParams.setMargins(20, 20, 20, 20);
+			textParams.addRule(RelativeLayout.CENTER_VERTICAL,
+					RelativeLayout.TRUE);
+			textParams.addRule(RelativeLayout.RIGHT_OF, i + 10);
+
+			icons[i].setBackgroundColor(0xffff0000);
+			icons[i].setId(i + 10);
+			iconParams.setMargins(10, 10, 10, 30);
+			iconParams.addRule(RelativeLayout.CENTER_VERTICAL,
+					RelativeLayout.TRUE);
+
+			text.setLayoutParams(textParams);
+			icons[i].setLayoutParams(iconParams);
+
+			line.addView(icons[i]);
+			line.addView(text);
+
+			ret.put(line, group.getObjectId());
+		}
 
 		return ret;
 	}
@@ -90,9 +95,11 @@ public class GroupsActivity extends Activity {
 					LayoutParams.MATCH_PARENT, 2);
 			split.setPadding(10, 10, 10, 10);
 			split.setLayoutParams(splitParams);
-			split.setBackgroundColor(getResources().getColor(R.color.light_purple));
+			split.setBackgroundColor(getResources().getColor(
+					R.color.light_purple));
 
-            line.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+			line.setLayoutParams(new LinearLayout.LayoutParams(
+					LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 			line.setBackground(getResources().getDrawable(
 					R.drawable.group_background));
 			line.setClickable(true);
@@ -124,7 +131,8 @@ public class GroupsActivity extends Activity {
 		// TODO Auto-generated method stub
 		switch (item.getItemId()) {
 		case R.id.mbGroupsSearchGroups:
-			Toast.makeText(GroupsActivity.this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+			Toast.makeText(GroupsActivity.this, "Not implemented yet",
+					Toast.LENGTH_SHORT).show();
 			return true;
 		case R.id.mbGroupsCreateNewGroup:
 			Intent i = new Intent(GroupsActivity.this,
@@ -132,13 +140,23 @@ public class GroupsActivity extends Activity {
 			startActivity(i);
 			return true;
 		case R.id.mbGroupsSettings:
-			Toast.makeText(GroupsActivity.this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+			Toast.makeText(GroupsActivity.this, "Not implemented yet",
+					Toast.LENGTH_SHORT).show();
 			return true;
 		case R.id.mbGroupsSignOut:
 			ParseUser.logOut();
 			i = new Intent(GroupsActivity.this, LogInScreen.class);
 			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK
 					| Intent.FLAG_ACTIVITY_NEW_TASK);
+
+			// remove login credentials
+			SharedPreferences settings = getSharedPreferences(
+					DispatchActivity.PREFS_NAME, 0);
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putString("email", "");
+			editor.putString("password", "");
+			editor.commit();
+
 			startActivity(i);
 			return true;
 		default:
