@@ -15,7 +15,7 @@ public class Group extends ParseObject {
 	
 	public static List<Group> getGroupsOfUser(ParseUser user) throws ParseException {
 		ParseQuery<Group> query = ParseQuery.getQuery("Group");
-		query.whereEqualTo("memebers", user);
+		query.whereEqualTo("members", user);
 		
 		return query.find();
 	}
@@ -27,6 +27,7 @@ public class Group extends ParseObject {
 		if(icon != null)
 			setIcon(icon);
 		setAdmin(admin);
+		addMember(admin);
 		this.saveInBackground();
 	}
 	
