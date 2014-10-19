@@ -1,6 +1,5 @@
 package com.anon;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -16,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.anon.backend.Comment;
+import com.anon.backend.Group;
 import com.anon.backend.Post;
 import com.parse.ParseException;
 
@@ -25,34 +25,35 @@ public class PostsActivity extends Activity {
     public void onCreate(Bundle b){
         super.onCreate(b);
         setContentView(R.layout.posts);
-        setupGUI(b.getString("parentGroupID"));
+        setupGUI(getIntent().getExtras().getString("parentGroupID"));
     }
     
+
     private LinkedHashMap<View, String> loadPosts(String parentGroupID){
     	LinkedHashMap<View, String> ret = new LinkedHashMap<View, String>();
     	
-    	List<Comment> comments = null;
+    	List<Post> posts = null;
 		try {
-			comments = Post.getPostFromID(parentGroupID).getAllComments();
+			posts = Group.getGroupFromID(parentGroupID).getAllPosts();
 		} catch(ParseException e) {
 			e.printStackTrace();
 		}
         
-        for(Comment comment : comments){
+        for(Post post : posts){
             RelativeLayout.LayoutParams  textParams =
                     new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
             
             TextView text = new TextView(this);
-            text.setText(comment.getMessage());
+            text.setText(post.getMessage());
             text.setTypeface(Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf"));
             text.setTextSize(30);
-            text.setTextColor(0xffffffff);
+            text.setTextColor(0xff000000);
             text.setPadding(40, 20, 40, 20);
             
             textParams.setMargins(40, 40, 40, 40);
             text.setLayoutParams(textParams);
             
-            ret.put(text, comment.getObjectId());
+            ret.put(text, post.getObjectId());
         }
         
         return ret;
@@ -63,8 +64,9 @@ public class PostsActivity extends Activity {
         
         for(View line : posts.keySet()){
             LinearLayout layout = ((LinearLayout)findViewById(R.id.llPosts));
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
             params.setMargins(0, 40, 0, 40);
+
 
             line.setLayoutParams(params);
             line.setClickable(true);
@@ -73,7 +75,7 @@ public class PostsActivity extends Activity {
                     Log.wtf("Arjun", "Sucks");
                 }
             });
-            line.setBackgroundColor(getResources().getColor(R.color.dark_blue));
+            line.setBackgroundColor(getResources().getColor(R.color.white));
             
             layout.addView(line);
         }

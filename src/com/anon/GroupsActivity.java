@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.anon.CreateNewGroup.EditNameDialogListener;
 import com.anon.backend.Group;
@@ -48,39 +49,35 @@ public class GroupsActivity extends Activity implements EditNameDialogListener {
 				new ImageView(this) };
 
 		for (int i = 0; i < usersGroups.size(); i++) {
-			Group group = usersGroups.get(i);
+            Group group = usersGroups.get(i);
+            
+            RelativeLayout.LayoutParams iconParams = new RelativeLayout.LayoutParams(150, 150),
+                    textParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+            
+            RelativeLayout line = new RelativeLayout(this);
+            
+            TextView text = new TextView(this);
+            text.setText(group.getName());
+            text.setTypeface(Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf"));
+            text.setTextSize(30);
+            text.setTextColor(0xff000000);
+            textParams.setMargins(20, 20, 20, 20);
+            textParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
+            textParams.addRule(RelativeLayout.RIGHT_OF, i+10);
+            
+            icons[i].setBackgroundColor(0xffff0000);
+            icons[i].setId(i+10);
+            iconParams.setMargins(10, 10, 10, 30);
+            iconParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
 
-			RelativeLayout.LayoutParams iconParams = new RelativeLayout.LayoutParams(
-					150, 150), textParams = new RelativeLayout.LayoutParams(
-					LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-
-			RelativeLayout line = new RelativeLayout(this);
-
-			TextView text = new TextView(this);
-			text.setText(group.getName());
-			text.setTypeface(Typeface.createFromAsset(getAssets(),
-					"Roboto-Light.ttf"));
-			text.setTextSize(30);
-			text.setTextColor(0xff000000);
-			textParams.setMargins(20, 20, 20, 20);
-			textParams.addRule(RelativeLayout.CENTER_VERTICAL,
-					RelativeLayout.TRUE);
-			textParams.addRule(RelativeLayout.RIGHT_OF, i + 10);
-
-			icons[i].setBackgroundColor(0xffff0000);
-			icons[i].setId(i + 10);
-			iconParams.setMargins(10, 10, 10, 30);
-			iconParams.addRule(RelativeLayout.CENTER_VERTICAL,
-					RelativeLayout.TRUE);
-
-			text.setLayoutParams(textParams);
-			icons[i].setLayoutParams(iconParams);
-
-			line.addView(icons[i]);
-			line.addView(text);
-
-			ret.put(line, group.getObjectId());
-		}
+            text.setLayoutParams(textParams);
+            icons[i].setLayoutParams(iconParams);
+            
+            line.addView(icons[i]);
+            line.addView(text);
+            
+            ret.put(line, group.getObjectId());
+        }
 
 		return ret;
 	}
@@ -96,11 +93,9 @@ public class GroupsActivity extends Activity implements EditNameDialogListener {
 					LayoutParams.MATCH_PARENT, 2);
 			split.setPadding(10, 10, 10, 10);
 			split.setLayoutParams(splitParams);
-			split.setBackgroundColor(getResources().getColor(
-					R.color.light_purple));
+			split.setBackgroundColor(getResources().getColor(R.color.light_purple));
 
-			line.setLayoutParams(new LinearLayout.LayoutParams(
-					LayoutParams.MATCH_PARENT, 200));
+            line.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 			line.setBackground(getResources().getDrawable(
 					R.drawable.group_background));
 			line.setClickable(true);
@@ -132,7 +127,7 @@ public class GroupsActivity extends Activity implements EditNameDialogListener {
 		// TODO Auto-generated method stub
 		switch (item.getItemId()) {
 		case R.id.mbGroupsSearchGroups:
-			// dostuff
+			Toast.makeText(GroupsActivity.this, "Not implemented yet", Toast.LENGTH_SHORT).show();
 			return true;
 		case R.id.mbGroupsCreateNewGroup:
 			FragmentManager fm = getFragmentManager();
@@ -140,7 +135,7 @@ public class GroupsActivity extends Activity implements EditNameDialogListener {
 	        createNewGroupDialog.show(fm, "createNewGroupDialog");
 			return true;
 		case R.id.mbGroupsSettings:
-			// dostuff
+			Toast.makeText(GroupsActivity.this, "Not implemented yet", Toast.LENGTH_SHORT).show();
 			return true;
 		case R.id.mbGroupsSignOut:
 			ParseUser.logOut();
@@ -157,6 +152,7 @@ public class GroupsActivity extends Activity implements EditNameDialogListener {
 	@Override
     public void onFinishEditDialog(String inputText) {
         String groupName = inputText;
+        Log.wtf("yo", inputText);
     }
 
 }
