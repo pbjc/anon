@@ -21,7 +21,7 @@
     <string name="view_group_list">View Group List</string>
     <string name="enter_user_email">Enter User\'s Email Address</string>
 
-    <string name="alert_name_clarification"><u>Why do you need this?</u></string>
+    <string name="alert_name_clarification"><u>Why do we need this?</u></string>
     <string name="alert_name_title">Why do we need your name?</string>
     <string name="alert_name_text">While all of your posts and comments
         are completely anonymous, other members in your group have the ability
@@ -39,6 +39,8 @@
     <string name="progress_login">Logging in...</string>
     <string name="progress_signup">Signing in...</string>
 
+    <string name="loser">You don\'t have any groups!\n\n↑ Add one now ↑</string>
+    
     <!-- ******* Post Testing ******* -->
     <string name="message">Enter message</string>
     <string name="button_send">Send</string>

@@ -180,9 +180,10 @@ public class PostsActivity extends Activity implements EditNameDialogListenerNew
 			e.printStackTrace();
 		}
 		String addUserEmail = inputText;
-		System.out.println(inputText);
+		Log.wtf("Input Text", inputText);
 		ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
 		userQuery.whereEqualTo("email", addUserEmail);
+		
 		ParseUser user = null;
 		try {
 			user = userQuery.find().get(0);
