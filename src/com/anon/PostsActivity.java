@@ -124,7 +124,7 @@ public class PostsActivity extends Activity implements EditNameDialogListenerNew
 		inflater.inflate(R.menu.posts_page_activity_menu, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
-
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -137,6 +137,20 @@ public class PostsActivity extends Activity implements EditNameDialogListenerNew
 			FragmentManager fm2 = getFragmentManager();
 			AddNewUserToGroup addNewUserDialog = new AddNewUserToGroup();
 			addNewUserDialog.show(fm2, "addNewUserDialog");
+			return true;
+		case R.id.mbPostsListAllUsers:
+			Intent i = new Intent(PostsActivity.this, GroupUserListActivity.class);
+			Bundle b = new Bundle();
+			
+			Group group = null;
+			try {
+				group = Group.getGroupFromID(getIntent().getExtras().getString("parentGroupID"));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			b.putString("groupID", getIntent().getExtras().getString("parentGroupID"));
+			i.putExtras(b);
+			startActivity(i);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

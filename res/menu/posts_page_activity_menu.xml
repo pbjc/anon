@@ -10,19 +10,13 @@
     <item
         android:id="@+id/mbPostsAddNewUser"
         android:icon="@drawable/ic_action_user_add"
-        android:showAsAction="ifRoom"
-        android:title="@string/new_user"/>
-
-    <!--
-    Overflow 
+        android:showAsAction="never"
+        android:title="@string/add_new_user"/>
     
-    <item android:id="@+id/mbGroupsSettings"
-          android:title="@string/settings"
-          android:showAsAction="never" />
-    
-    <item android:id="@+id/mbGroupsSignOut"
-          android:title="@string/sign_out"
-          android:showAsAction="never" />
-    -->
+    <item
+        android:id="@+id/mbPostsListAllUsers"
+        android:icon="@drawable/ic_action_user_add"
+        android:showAsAction="never"
+        android:title="@string/view_group_list"/>
 
 </menu>

@@ -17,6 +17,8 @@
     <string name="new_post">New Post</string>
     <string name="new_comment">New Comment</string>
     <string name="new_user">New User</string>
+    <string name="add_new_user">Add New User</string>
+    <string name="view_group_list">View Group List</string>
     <string name="enter_user_email">Enter User\'s Email Address</string>
 
     <string name="alert_name_clarification"><u>Why do you need this?</u></string>
