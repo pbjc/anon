@@ -43,39 +43,39 @@ public class GroupsActivity extends Activity implements EditNameDialogListener {
 		} catch(ParseException e) {
 			e.printStackTrace();
 		}
-		
-		ImageView icons[] = { new ImageView(this), new ImageView(this), new ImageView(this), new ImageView(this), new ImageView(this), new ImageView(this), new ImageView(this), new ImageView(this), new ImageView(this), new ImageView(this), new ImageView(this), new ImageView(this) };
-		
-		for(int i = 0; i < usersGroups.size(); i++) {
-			Group group = usersGroups.get(i);
-			
-			RelativeLayout.LayoutParams iconParams = new RelativeLayout.LayoutParams(150, 150), textParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-			
-			RelativeLayout line = new RelativeLayout(this);
-			
-			TextView text = new TextView(this);
-			text.setText(group.getName());
-			text.setTypeface(Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf"));
-			text.setTextSize(30);
-			text.setTextColor(0xff000000);
-			textParams.setMargins(20, 20, 20, 20);
-			textParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
-			textParams.addRule(RelativeLayout.RIGHT_OF, i + 10);
-			
-			icons[i].setBackgroundColor(0xffff0000);
-			icons[i].setId(i + 10);
-			iconParams.setMargins(10, 10, 10, 30);
-			iconParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
-			
-			text.setLayoutParams(textParams);
-			icons[i].setLayoutParams(iconParams);
-			
-			line.addView(icons[i]);
-			line.addView(text);
-			
-			ret.put(line, group.getObjectId());
-		}
-		
+
+		for (int i = 0; i < usersGroups.size(); i++) {
+		    ImageView icon = new ImageView(this);
+            Group group = usersGroups.get(i);
+            
+            RelativeLayout.LayoutParams iconParams = new RelativeLayout.LayoutParams(150, 150),
+                    textParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+            
+            RelativeLayout line = new RelativeLayout(this);
+            
+            TextView text = new TextView(this);
+            text.setText(group.getName());
+            text.setTypeface(Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf"));
+            text.setTextSize(30);
+            text.setTextColor(0xff000000);
+            textParams.setMargins(20, 20, 20, 20);
+            textParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
+            textParams.addRule(RelativeLayout.RIGHT_OF, i+10);
+            
+            icon.setBackgroundColor(0xffff0000);
+            icon.setId(i+10);
+            iconParams.setMargins(10, 10, 10, 30);
+            iconParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
+
+            text.setLayoutParams(textParams);
+            icon.setLayoutParams(iconParams);
+            
+            line.addView(icon);
+            line.addView(text);
+            
+            ret.put(line, group.getObjectId());
+        }
+
 		return ret;
 	}
 	
