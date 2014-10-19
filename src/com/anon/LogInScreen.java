@@ -60,4 +60,5 @@ public class LogInScreen extends Activity {
 		createNewUser.setTypeface(tf);
 		logInUser.setTypeface(tf);
 	}
+
 }

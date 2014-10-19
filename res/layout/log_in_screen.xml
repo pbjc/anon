@@ -9,7 +9,7 @@
         android:layout_marginTop="35dp"
         android:gravity="center"
         android:text="@string/app_name"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:textSize="50dp" >
     </TextView>
 
@@ -29,7 +29,7 @@
             android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:singleLine="true"
-            android:textColor="#000000" >
+            android:textColor="@color/black" >
         </EditText>
 
         <EditText
@@ -42,7 +42,7 @@
             android:hint="@string/password"
             android:inputType="textPassword"
             android:singleLine="true"
-            android:textColor="#000000" >
+            android:textColor="@color/black" >
         </EditText>
     </LinearLayout>
 
@@ -59,7 +59,7 @@
             android:layout_width="125dp"
             android:layout_height="match_parent"
             android:text="@string/create_acct"
-            android:color="#9933CC" >
+            android:color="@color/light_purple" >
         </Button>
 
         <Button
@@ -68,7 +68,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:text="@string/log_me_in"
-            android:color="#9933CC" >
+            android:color="@color/light_purple" >
         </Button>
     </LinearLayout>
 
