@@ -137,7 +137,13 @@ public class PostsActivity extends Activity implements EditNameDialogListenerNew
 
 	@Override
 	public void onFinishEditDialogNewPosts(String inputText) {
-		// TODO Auto-generated method stub
 		String postText = inputText;
+		Group group = null;
+		try {
+			group = Group.getGroupFromID(getIntent().getExtras().getString("parentGroupID"));
+		} catch(ParseException e) {
+			e.printStackTrace();
+		}
+		new Post(postText, group, ParseUser.getCurrentUser());
 	}
 }

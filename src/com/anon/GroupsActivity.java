@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
@@ -122,7 +123,8 @@ public class GroupsActivity extends Activity implements EditNameDialogListener {
 		// TODO Auto-generated method stub
 		switch(item.getItemId()) {
 		case R.id.mbGroupsSearchGroups:
-			Toast.makeText(GroupsActivity.this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+			Toast.makeText(GroupsActivity.this, "Not implemented yet",
+					Toast.LENGTH_SHORT).show();
 			return true;
 		case R.id.mbGroupsCreateNewGroup:
 			FragmentManager fm = getFragmentManager();
@@ -130,7 +132,8 @@ public class GroupsActivity extends Activity implements EditNameDialogListener {
 			createNewGroupDialog.show(fm, "createNewGroupDialog");
 			return true;
 		case R.id.mbGroupsSettings:
-			Toast.makeText(GroupsActivity.this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+			Toast.makeText(GroupsActivity.this, "Not implemented yet",
+					Toast.LENGTH_SHORT).show();
 			return true;
 		case R.id.mbGroupsSignOut:
 			ParseUser.logOut();

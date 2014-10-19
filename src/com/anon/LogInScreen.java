@@ -3,6 +3,7 @@ package com.anon;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -116,11 +117,26 @@ public class LogInScreen extends Activity {
 							Toast.LENGTH_LONG).show();
 				} else {
 					Intent intent = new Intent(LogInScreen.this,
-							DispatchActivity.class);
+							GroupsActivity.class);
 					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK
 							| Intent.FLAG_ACTIVITY_NEW_TASK);
+
+					// save login credentials
+					SharedPreferences settings = getSharedPreferences(
+							DispatchActivity.PREFS_NAME, 0);
+					SharedPreferences.Editor editor = settings.edit();
+					editor.putString("email", user.getUsername());
+					editor.putString("password",
+							userPasswordInfo.getText().toString().trim());
+					editor.commit();
+
 					startActivity(intent);
 				}
+			}
+
+			private SharedPreferences getPreferences(String prefsName, int i) {
+				// TODO Auto-generated method stub
+				return null;
 			}
 		});
 	}
