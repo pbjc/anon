@@ -123,7 +123,7 @@ public class PostsActivity extends Activity implements
 			layout.addView(line);
 
 			try {
-				admin = Group.getGroupFromID(parentGroupID).getAdmin().fetch();
+				admin = Group.getGroupFromID(parentGroupID).getAdmin().fetchIfNeeded();
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -134,8 +134,8 @@ public class PostsActivity extends Activity implements
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.posts_page_activity_menu, menu);
-		if (!admin.getUsername()
-				.equals(ParseUser.getCurrentUser().getUsername()))
+		if (admin != null && !admin.getUsername().equals(
+				ParseUser.getCurrentUser().getUsername()))
 			menu.removeItem(R.id.mbPostsAddNewUser);
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -167,7 +167,8 @@ public class PostsActivity extends Activity implements
 			}
 			b.putString("groupID",
 					getIntent().getExtras().getString("parentGroupID"));
-			b.putString("admin", admin.getUsername());
+			if (admin != null)
+				b.putString("admin", admin.getUsername());
 			i.putExtras(b);
 			startActivity(i);
 			return true;
