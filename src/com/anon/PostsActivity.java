@@ -14,55 +14,43 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class GroupsActivity extends Activity {
+public class PostsActivity extends Activity {
 
     @Override
     public void onCreate(Bundle b){
         super.onCreate(b);
-        setContentView(R.layout.groups);
+        setContentView(R.layout.posts);
         setupGUI();
     }
     
-    private ArrayList<View> loadGroups(){
+    private ArrayList<View> loadPosts(){
         ArrayList<View> ret = new ArrayList<View>();
         
-        ImageView icons[] = { new ImageView(this), new ImageView(this), new ImageView(this) };
-        String names[] = {"Group 1 Group 1 Group 1 Group 1 Group 1 Group 1", "Group 2", "Group 3"};
+        String posts[] = {"Shit", "Jacob is da' bomb.com", "gfgfskjdHFBAJHKDSFGAKSHDFGAKSJDHFG ASD FASDGF LAJKSHDFG KADSKL ASDGFDSLKASJD AS"};
         
-        for(int a = 0; a < names.length; a++){
-            RelativeLayout.LayoutParams iconParams = new RelativeLayout.LayoutParams(150, 150),
-                    textParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-
-            RelativeLayout line = new RelativeLayout(this);
+        for(int a = 0; a < posts.length; a++){
+            RelativeLayout.LayoutParams  textParams =
+                    new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
             
             TextView text = new TextView(this);
-            text.setText(names[a]);
+            text.setText(posts[a]);
             text.setTypeface(Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf"));
             text.setTextSize(30);
-            text.setTextColor(0xff000000);
+            text.setTextColor(getResources().getColor(R.color.light_blue));
             textParams.setMargins(20, 20, 20, 20);
             textParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
             textParams.addRule(RelativeLayout.RIGHT_OF, a+10);
             
-            icons[a].setBackgroundColor(0xffff0000);
-            icons[a].setId(a+10);
-            iconParams.setMargins(10, 10, 10, 30);
-            iconParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
-
             text.setLayoutParams(textParams);
-            icons[a].setLayoutParams(iconParams);
             
-            line.addView(icons[a]);
-            line.addView(text);
-            
-            ret.add(line);
+            ret.add(text);
         }
         
         return ret;
     }
     
     private void setupGUI(){
-        ArrayList<View> groups = loadGroups();
+        ArrayList<View> groups = loadPosts();
         
         for(View line : groups){
             LinearLayout layout = ((LinearLayout)findViewById(R.id.llGroups));
