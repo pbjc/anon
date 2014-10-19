@@ -2,40 +2,40 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_grey" >
+    android:background="@color/light_grey"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp" >
 
     <TextView
-        android:id="@+id/tvGroup"
+        android:id="@+id/tvPost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
-        android:background="@color/white"
-        android:gravity="center"
-        android:padding="10dp"
         android:textColor="@color/black"
-        android:textSize="35sp" />
+        android:textSize="30sp" 
+        android:layout_centerHorizontal="true"
+        android:background="@color/white"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:gravity="center"/>
 
     <View
         android:id="@+id/split"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_below="@+id/tvGroup"
+        android:layout_below="@+id/tvPost"
         android:background="@color/light_purple"
         android:paddingBottom="10dp"
         android:paddingTop="10dp" />
 
     <ScrollView
-        android:id="@+id/svPosts"
+        android:id="@+id/svComments"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/split"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp" >
+        android:layout_below="@+id/split" >
 
         <LinearLayout
-            android:id="@+id/llPosts"
+            android:id="@+id/llComments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
