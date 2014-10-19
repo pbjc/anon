@@ -35,14 +35,13 @@ public class CreateNewUser extends Activity {
 		initializeVars();
 		setTextFonts();
 
-		// fill in email and password from login screen
+		// fill in email from login screen
 		Bundle accountInfo = getIntent().getExtras();
 		userEmailInfo.setText(accountInfo.getString("email"));
 
 		cancel.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-
 				finish(); // ends activity
 			}
 		});
