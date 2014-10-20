@@ -5,7 +5,6 @@ import android.app.Application;
 import com.anon.backend.Comment;
 import com.anon.backend.Group;
 import com.anon.backend.Post;
-import com.firebase.client.Firebase;
 import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseObject;
@@ -18,8 +17,6 @@ public class Anon extends Application {
         super.onCreate();
 
 //        Parse.enableLocalDatastore(getApplicationContext());
-        
-        Firebase.setAndroidContext(this);
         
         ParseObject.registerSubclass(Group.class);
         ParseObject.registerSubclass(Post.class);

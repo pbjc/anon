@@ -14,8 +14,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 public class CreateNewUser extends Activity {
 
@@ -114,37 +115,41 @@ public class CreateNewUser extends Activity {
 		dialog.setMessage(getString(R.string.progress_signup));
 		dialog.show();
 
-		Flame.ref.createUser(email, password, new Firebase.ResultHandler() {
-			
-			@Override
-			public void onSuccess() {
-				Intent intent = new Intent(CreateNewUser.this,
-						GroupsActivity.class);
-				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK
-						| Intent.FLAG_ACTIVITY_NEW_TASK);
+		ParseUser user = new ParseUser();
+		user.put("name", username);
+		user.setUsername(email);
+		user.setPassword(password);
+		user.setEmail(email);
 
-				// save login credentials
-				SharedPreferences settings = getSharedPreferences(
-						DispatchActivity.PREFS_NAME, 0);
-				SharedPreferences.Editor editor = settings.edit();
-				editor.putString("email",
-						userNameInfo.getText().toString().trim());
-				editor.putString("password",
-						userPasswordInfo.getText().toString().trim());
-				editor.commit();
-
-				startActivity(intent);
-			}
-			
+		user.signUpInBackground(new SignUpCallback() {
 			@Override
-			public void onError(FirebaseError e) {
-				Toast.makeText(CreateNewUser.this, e.getMessage(),
-						Toast.LENGTH_LONG).show();
+			public void done(ParseException e) {
+				dialog.dismiss();
+				if (e != null) {
+					Toast.makeText(CreateNewUser.this, e.getMessage(),
+							Toast.LENGTH_LONG).show();
+				} else {
+					Intent intent = new Intent(CreateNewUser.this,
+							GroupsActivity.class);
+					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK
+							| Intent.FLAG_ACTIVITY_NEW_TASK);
+
+					// save login credentials
+					SharedPreferences settings = getSharedPreferences(
+							DispatchActivity.PREFS_NAME, 0);
+					SharedPreferences.Editor editor = settings.edit();
+					editor.putString("email",
+							userNameInfo.getText().toString().trim());
+					editor.putString("password",
+							userPasswordInfo.getText().toString().trim());
+					editor.commit();
+
+					startActivity(intent);
+				}
 			}
 		});
 	}
-	
-	
+
 	private void alertNameClarification() {
 		new AlertDialog.Builder(this)
 				.setTitle(getString(R.string.alert_name_title))

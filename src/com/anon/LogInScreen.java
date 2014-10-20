@@ -10,13 +10,14 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.client.AuthData;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
+import com.parse.LogInCallback;
+import com.parse.ParseException;
+import com.parse.ParseUser;
 
 public class LogInScreen extends Activity {
 
@@ -107,31 +108,35 @@ public class LogInScreen extends Activity {
 		dialog.setMessage(getString(R.string.progress_signup));
 		dialog.show();
 
-		Flame.ref.authWithPassword(email, password, new Firebase.AuthResultHandler() {
-			
+		ParseUser.logInInBackground(email, password, new LogInCallback() {
 			@Override
-			public void onAuthenticationError(FirebaseError e) {
-				Toast.makeText(LogInScreen.this, e.getMessage(),
-						Toast.LENGTH_LONG).show();
+			public void done(ParseUser user, ParseException e) {
+				dialog.dismiss();
+				if (e != null) {
+					Toast.makeText(LogInScreen.this, e.getMessage(),
+							Toast.LENGTH_LONG).show();
+				} else {
+					Intent intent = new Intent(LogInScreen.this,
+							GroupsActivity.class);
+					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK
+							| Intent.FLAG_ACTIVITY_NEW_TASK);
+
+					// save login credentials
+					SharedPreferences settings = getSharedPreferences(
+							DispatchActivity.PREFS_NAME, 0);
+					SharedPreferences.Editor editor = settings.edit();
+					editor.putString("email", user.getUsername());
+					editor.putString("password",
+							userPasswordInfo.getText().toString().trim());
+					editor.commit();
+
+					startActivity(intent);
+				}
 			}
-			
-			@Override
-			public void onAuthenticated(AuthData data) {
-				Intent intent = new Intent(LogInScreen.this,
-						GroupsActivity.class);
-				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK
-						| Intent.FLAG_ACTIVITY_NEW_TASK);
 
-				// save login credentials
-				SharedPreferences settings = getSharedPreferences(
-						DispatchActivity.PREFS_NAME, 0);
-				SharedPreferences.Editor editor = settings.edit();
-				editor.putString("email", userEmailAddressInfo.getText().toString().trim());
-				editor.putString("password",
-						userPasswordInfo.getText().toString().trim());
-				editor.commit();
-
-				startActivity(intent);
+			private SharedPreferences getPreferences(String prefsName, int i) {
+				// TODO Auto-generated method stub
+				return null;
 			}
 		});
 	}
