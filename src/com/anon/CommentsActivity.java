@@ -18,7 +18,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.anon.CreateNewComment.EditNameDialogListenerNewComments;
+import com.anon.CreateComment.EditNameDialogListenerNewComments;
 import com.anon.backend.Comment;
 import com.anon.backend.Post;
 import com.parse.ParseException;
@@ -101,7 +101,7 @@ public class CommentsActivity extends Activity implements EditNameDialogListener
 		switch (item.getItemId()) {
 		case R.id.mbCommentsCreateNewComment:
 			FragmentManager fm = getFragmentManager();
-			CreateNewComment CreateNewCommentDialog = new CreateNewComment();
+			CreateComment CreateNewCommentDialog = new CreateComment();
 			CreateNewCommentDialog.show(fm, "CreateNewCommentDialog");
 			return true;
 		default:

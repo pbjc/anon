@@ -13,13 +13,12 @@ import com.anon.backend.Group;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
-public class GroupUserListActivity extends Activity {
+public class GroupMemberListActivity extends Activity {
 
 	ListView userList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE); // removes title bar
 		setContentView(R.layout.group_users_list_activity);

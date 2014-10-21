@@ -18,7 +18,7 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
-public class CreateNewUser extends Activity {
+public class CreateUserActivity extends Activity {
 
 	TextView screenTitle, nameClarification;
 	EditText userNameInfo, userEmailInfo, userPasswordInfo,
@@ -104,14 +104,14 @@ public class CreateNewUser extends Activity {
 		validationErrorMessage.append(getString(R.string.error_end));
 
 		if (validationError) {
-			Toast.makeText(CreateNewUser.this,
+			Toast.makeText(CreateUserActivity.this,
 					validationErrorMessage.toString(), Toast.LENGTH_LONG)
 					.show();
 			return;
 		}
 
 		// set up a progress dialog
-		final ProgressDialog dialog = new ProgressDialog(CreateNewUser.this);
+		final ProgressDialog dialog = new ProgressDialog(CreateUserActivity.this);
 		dialog.setMessage(getString(R.string.progress_signup));
 		dialog.show();
 
@@ -126,10 +126,10 @@ public class CreateNewUser extends Activity {
 			public void done(ParseException e) {
 				dialog.dismiss();
 				if (e != null) {
-					Toast.makeText(CreateNewUser.this, e.getMessage(),
+					Toast.makeText(CreateUserActivity.this, e.getMessage(),
 							Toast.LENGTH_LONG).show();
 				} else {
-					Intent intent = new Intent(CreateNewUser.this,
+					Intent intent = new Intent(CreateUserActivity.this,
 							GroupsActivity.class);
 					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK
 							| Intent.FLAG_ACTIVITY_NEW_TASK);

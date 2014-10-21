@@ -19,8 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.anon.AddNewUserToGroup.EditNameDialogListenerAddUsers;
-import com.anon.CreateNewPost.EditNameDialogListenerNewPosts;
+import com.anon.AddGroupMember.EditNameDialogListenerAddUsers;
+import com.anon.CreatePost.EditNameDialogListenerNewPosts;
 import com.anon.backend.Group;
 import com.anon.backend.Post;
 import com.parse.ParseException;
@@ -145,17 +145,17 @@ public class PostsActivity extends Activity implements
 		switch (item.getItemId()) {
 		case R.id.mbPostsCreateNewPost:
 			FragmentManager fm1 = getFragmentManager();
-			CreateNewPost CreateNewPostDialog = new CreateNewPost();
+			CreatePost CreateNewPostDialog = new CreatePost();
 			CreateNewPostDialog.show(fm1, "CreateNewPostDialog");
 			return true;
 		case R.id.mbPostsAddNewUser:
 			FragmentManager fm2 = getFragmentManager();
-			AddNewUserToGroup addNewUserDialog = new AddNewUserToGroup();
+			AddGroupMember addNewUserDialog = new AddGroupMember();
 			addNewUserDialog.show(fm2, "addNewUserDialog");
 			return true;
 		case R.id.mbPostsListAllUsers:
 			Intent i = new Intent(PostsActivity.this,
-					GroupUserListActivity.class);
+					GroupMemberListActivity.class);
 			Bundle b = new Bundle();
 
 			Group group = null;

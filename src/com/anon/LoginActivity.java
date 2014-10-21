@@ -19,7 +19,7 @@ import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
-public class LogInScreen extends Activity {
+public class LoginActivity extends Activity {
 
 	TextView screenTitle;
 	EditText userEmailAddressInfo, userPasswordInfo;
@@ -58,8 +58,8 @@ public class LogInScreen extends Activity {
 		createNewUser.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(LogInScreen.this,
-						CreateNewUser.class);
+				Intent intent = new Intent(LoginActivity.this,
+						CreateUserActivity.class);
 
 				// if the user has entered email, send it to
 				// the account creation screen
@@ -98,13 +98,13 @@ public class LogInScreen extends Activity {
 		validationErrorMessage.append(getString(R.string.error_end));
 
 		if (validationError) {
-			Toast.makeText(LogInScreen.this, validationErrorMessage.toString(),
+			Toast.makeText(LoginActivity.this, validationErrorMessage.toString(),
 					Toast.LENGTH_LONG).show();
 			return;
 		}
 
 		// set up a progress dialog
-		final ProgressDialog dialog = new ProgressDialog(LogInScreen.this);
+		final ProgressDialog dialog = new ProgressDialog(LoginActivity.this);
 		dialog.setMessage(getString(R.string.progress_signup));
 		dialog.show();
 
@@ -113,10 +113,10 @@ public class LogInScreen extends Activity {
 			public void done(ParseUser user, ParseException e) {
 				dialog.dismiss();
 				if (e != null) {
-					Toast.makeText(LogInScreen.this, e.getMessage(),
+					Toast.makeText(LoginActivity.this, e.getMessage(),
 							Toast.LENGTH_LONG).show();
 				} else {
-					Intent intent = new Intent(LogInScreen.this,
+					Intent intent = new Intent(LoginActivity.this,
 							GroupsActivity.class);
 					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK
 							| Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -135,7 +135,6 @@ public class LogInScreen extends Activity {
 			}
 
 			private SharedPreferences getPreferences(String prefsName, int i) {
-				// TODO Auto-generated method stub
 				return null;
 			}
 		});

@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.anon.LogInScreen"
+            android:name="com.anon.LoginActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -37,7 +37,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.anon.CreateNewUser"
+            android:name="com.anon.CreateUserActivity"
             android:label="@string/app_name"
             android:noHistory="true"
             android:screenOrientation="portrait" >
@@ -88,7 +88,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.anon.GroupUserListActivity"
+            android:name="com.anon.GroupMemberListActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.Dialog" >

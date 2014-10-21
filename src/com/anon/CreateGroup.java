@@ -11,24 +11,24 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-public class CreateNewPost extends DialogFragment implements OnEditorActionListener{
+public class CreateGroup extends DialogFragment implements OnEditorActionListener{
 
-	public interface EditNameDialogListenerNewPosts {
-        void onFinishEditDialogNewPosts(String inputText);
+	public interface EditNameDialogListener {
+        void onFinishEditDialog(String inputText);
     }
  
-    private EditText etPostText;
+    private EditText etGroupName;
 	
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.create_new_post, container);
-        etPostText = (EditText) view.findViewById(R.id.etCreateNewPostSetText);
-        getDialog().setTitle("Create New Post");
+        View view = inflater.inflate(R.layout.create_new_group, container);
+        etGroupName = (EditText) view.findViewById(R.id.etCreateNewGroupSetName);
+        getDialog().setTitle("Create New Group");
  
         // Show soft keyboard automatically
-        etPostText.requestFocus();
-        etPostText.setOnEditorActionListener(this);
+        etGroupName.requestFocus();
+        etGroupName.setOnEditorActionListener(this);
  
         return view;
     }
@@ -37,8 +37,8 @@ public class CreateNewPost extends DialogFragment implements OnEditorActionListe
 	public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 		if (EditorInfo.IME_ACTION_DONE == actionId) {
             // Return input text to activity
-            EditNameDialogListenerNewPosts activity = (EditNameDialogListenerNewPosts) getActivity();
-            activity.onFinishEditDialogNewPosts(etPostText.getText().toString());
+            EditNameDialogListener activity = (EditNameDialogListener) getActivity();
+            activity.onFinishEditDialog(etGroupName.getText().toString());
             this.dismiss();
             return true;
         }

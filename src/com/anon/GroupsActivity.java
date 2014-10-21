@@ -22,7 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.anon.CreateNewGroup.EditNameDialogListener;
+import com.anon.CreateGroup.EditNameDialogListener;
 import com.anon.backend.Group;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -133,7 +133,6 @@ public class GroupsActivity extends Activity implements EditNameDialogListener {
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// TODO Auto-generated method stub
 		switch(item.getItemId()) {
 		case R.id.mbGroupsSearchGroups:
 			Toast.makeText(GroupsActivity.this, "Not implemented yet",
@@ -141,7 +140,7 @@ public class GroupsActivity extends Activity implements EditNameDialogListener {
 			return true;
 		case R.id.mbGroupsCreateNewGroup:
 			FragmentManager fm = getFragmentManager();
-			CreateNewGroup createNewGroupDialog = new CreateNewGroup();
+			CreateGroup createNewGroupDialog = new CreateGroup();
 			createNewGroupDialog.show(fm, "createNewGroupDialog");
 			return true;
 		case R.id.mbGroupsSettings:
@@ -150,7 +149,7 @@ public class GroupsActivity extends Activity implements EditNameDialogListener {
 			return true;
 		case R.id.mbGroupsSignOut:
 			ParseUser.logOut();
-			Intent i = new Intent(GroupsActivity.this, LogInScreen.class);
+			Intent i = new Intent(GroupsActivity.this, LoginActivity.class);
 			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(i);
 			
