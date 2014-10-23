@@ -11,8 +11,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-import com.anon.CreateNewPost.EditNameDialogListenerNewPosts;
-
 public class CreateNewComment extends DialogFragment implements OnEditorActionListener{
 
 	public interface EditNameDialogListenerNewComments {

@@ -17,8 +17,6 @@ public class Anon extends Application {
     public void onCreate() {
         super.onCreate();
 
-//        Parse.enableLocalDatastore(getApplicationContext());
-        
         Firebase.setAndroidContext(this);
         
         ParseObject.registerSubclass(Group.class);

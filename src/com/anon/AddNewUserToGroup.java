@@ -1,7 +1,5 @@
 package com.anon;
 
-import com.anon.CreateNewPost.EditNameDialogListenerNewPosts;
-
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.view.KeyEvent;

@@ -1,6 +1,5 @@
 package com.anon;
 
-import android.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
